@@ -8,8 +8,8 @@ namespace SchoolGroupsApp.Model
 {
     public class Groups
     {
-        private int GroupID { get; set; }
-        private string GroupName { get; set; }
+        public int GroupID { get; set; }
+        public string GroupName { get; set; }
 
         public Groups(int groupID, string groupName)
         {

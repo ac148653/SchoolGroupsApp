@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using SchoolGroupsApp.Model;
 
 namespace SchoolGroupsApp.Repositories
@@ -40,8 +41,17 @@ namespace SchoolGroupsApp.Repositories
             string sqlString = "SELECT * FROM GroupManagement.groups";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int groupId = Convert.ToInt32(reader["groupID"]);
+                        string groupName = reader["groupName"].ToString();
+                        groups.Add(new Groups(groupId, groupName));
+                    }
+                }
             }
+            return groups;
         }
 
     }
