@@ -9,7 +9,7 @@ namespace SchoolGroupsApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            string connectionString = "";
+            string connectionString = "SchoolGroupsDB";
             storageManager = new StorageManager(connectionString);
         }
     }

@@ -34,7 +34,7 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public List<Groups> GetAllGroups()
+       public List<Groups> GetAllGroups()
         {
             List<Groups> groups = new List<Groups>();
             string sqlString = "SELECT * FROM GroupManagement.groups";
