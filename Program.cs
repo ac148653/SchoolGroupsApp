@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks.Dataflow;
+using System.Transactions;
+using Azure.Core;
 using SchoolGroupsApp.Model;
 using SchoolGroupsApp.Repositories;
 using SchoolGroupsApp.View;
@@ -8,6 +10,7 @@ namespace SchoolGroupsApp
     internal class Program
     {
         private static StorageManager storageManager;
+        private static ConsoleView view;
 
         static void Main(string[] args)
         {
@@ -16,7 +19,7 @@ namespace SchoolGroupsApp
             storageManager = new StorageManager(connectionString);
 
             storageManager = new StorageManager(connectionString);
-            ConsoleView view = new ConsoleView();
+            view = new ConsoleView();
             string choice = view.DisplayMenu();
 
             switch (choice)
@@ -31,10 +34,10 @@ namespace SchoolGroupsApp
                     UpdateGroupName();
                     break;
                 case "3":
-                    InsertNewGroup();
+                   InsertNewGroup();
                     break;
                 case "4":
-                    DeleteGroupByName();
+                   DeleteGroupByName();
                     break;
                 /*case "5":
                     exit = true;
@@ -44,6 +47,42 @@ namespace SchoolGroupsApp
                     break;
             }
 
+            storageManager.CloseConnection();
+
         } 
+        private static void UpdateGroupName()
+        {
+            view.DisplayMessage("Enter the groupId to update: ");
+            int groupId = view.GetIntInput();
+            view.DisplayMessage("Enter the new group name: ");
+            string groupName = view.GetInput();
+            int rowsAffected = storageManager.UpdateGroupName(groupId, groupName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+        /*private static void InsertNewGroup()
+        {
+            view.DisplayMessage("Enter the new group name: ");
+            string groupName = view.GetInput();
+            int generateId = storageManager.InsertGroup(groupName);
+            view.DisplayMessage($"New group inserted with ID: {generateId}");
+        }*/
+        private static void InsertNewGroup()
+        {
+            view.DisplayMessage("Enter the new group name: ");
+            string groupName = view.GetInput();
+            int groupID = 0;
+            Groups group1 = new Groups(groupID, groupName);
+            int generateId = storageManager.InsertGroup(group1);
+            view.DisplayMessage($"New group inserted with ID: {generateId}");
+            
+        }
+
+        private static void DeleteGroupByName()
+        {
+            view.DisplayMessage("Enter the group name to delete: ");
+            string groupName = view.GetInput();
+            int rowsAffected = storageManager.DeleteGroupByName(groupName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
     }
 }

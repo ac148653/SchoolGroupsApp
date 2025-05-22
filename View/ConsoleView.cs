@@ -27,5 +27,18 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{group.GroupID}, {group.GroupName}");
             }
         }
+
+        public void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
+        public string GetInput()
+        {
+            return Console.ReadLine();
+        }
+        public int GetIntInput()
+        {
+            return int.Parse(Console.ReadLine());
+        }
     }
 }

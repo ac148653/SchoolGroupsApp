@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using SchoolGroupsApp.Model;
+using System.Data;
 
 namespace SchoolGroupsApp.Repositories
 {
@@ -52,6 +53,44 @@ namespace SchoolGroupsApp.Repositories
                 }
             }
             return groups;
+        }
+
+        public int UpdateGroupName(int groupId, string groupName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.groups SET groupName = @GroupName WHERE groupName = @GroupName", conn))
+            {
+                cmd.Parameters.AddWithValue("@GroupName", groupName);
+                cmd.Parameters.AddWithValue("@GroupID", groupId);   
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertGroup(Groups group1)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO GroupManagement.groups (groupName) " +
+                "VALUES (@GroupName); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@GroupName", group1.GroupName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }  
+        }
+        public int DeleteGroupByName(string groupName)
+        {
+            using SqlCommand cmd = new SqlCommand("DELETE FROM GroupManagement.groups WHERE groupName " +
+                "= @GroupName", conn);
+            {
+                cmd.Parameters.AddWithValue("@GroupName", groupName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void CloseConnection()
+        {
+            if (conn != null && conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+                Console.WriteLine("Connection closed");
+            }
         }
 
     }
