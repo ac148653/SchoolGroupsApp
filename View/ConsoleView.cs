@@ -12,7 +12,7 @@ namespace SchoolGroupsApp.View
     {
         public string Loginmenu()
         {
-            string choice;
+            int choice;
             Console.WriteLine("Welcome to our School Groups Programme ");
             Console.WriteLine("LOGIN HERE:");
             Console.WriteLine("1. Teacher Login");
