@@ -10,7 +10,7 @@ namespace SchoolGroupsApp.View
 {
     public class ConsoleView
     {
-        public string Loginmenu()
+        public int Loginmenu()
         {
             int choice;
             Console.WriteLine("Welcome to our School Groups Programme ");
@@ -20,8 +20,8 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("3. Student Registration");
             Console.WriteLine("4. Exit");
             Console.WriteLine("Select an option: ");
-            choice = Console.ReadLine();
-            return Console.ReadLine();
+            choice = int.Parse(Console.ReadLine());
+            return choice;
         }
         public string DisplayMenu()
         {
