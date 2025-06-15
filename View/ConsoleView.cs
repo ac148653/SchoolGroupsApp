@@ -13,18 +13,18 @@ namespace SchoolGroupsApp.View
         public int LoginMenu()
         {
             int choice;
-            Console.WriteLine("Welcome to our School Groups Programme ");
-            Console.WriteLine("LOGIN HERE:");
-            Console.WriteLine("1. Teacher Login");
-            Console.WriteLine("2. Student Login");
-            Console.WriteLine("3. Student Registration");
-            Console.WriteLine("4. Exit");
-            Console.WriteLine("Select an option: ");
-            choice = int.Parse(Console.ReadLine());
-            if( (choice>=1) && (choice<=4))
-                return choice;
-            else
-                Console.WriteLine("Your input was not valid. Enter the option again: ");
+            do
+            {
+                Console.WriteLine("Welcome to our School Groups Programme ")
+                Console.WriteLine("LOGIN HERE:");
+                Console.WriteLine("1. Teacher Login");
+                Console.WriteLine("2. Student Login");
+                Console.WriteLine("3. Student Registration");
+                Console.WriteLine("4. Exit");
+                Console.WriteLine("Select an option: ");
+                choice = int.Parse(Console.ReadLine());
+            } while ((choice < 1) || (choice > 4));
+            return choice;
         }
         public string DisplayMenu()
         {
