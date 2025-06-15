@@ -18,7 +18,7 @@ namespace SchoolGroupsApp
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolGroupsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
 
-            storageManager = new StorageManager(connectionString);
+    
             view = new ConsoleView();
             string choice = view.DisplayMenu();
 
