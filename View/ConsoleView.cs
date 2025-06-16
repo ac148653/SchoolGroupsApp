@@ -52,6 +52,27 @@ namespace SchoolGroupsApp.View
             } while ((choice < 1) || (choice > 8));
             return choice;
         }
+
+        public int StudentMenu()
+        {
+            int choice;
+            Console.WriteLine("Welcome to Student Menu! ");
+            do
+            {
+                Console.WriteLine("1. Join a group.");
+                Console.WriteLine("2. Withdraw from a group.");
+                Console.WriteLine("3. Badges");
+                Console.WriteLine("4. Tasks");
+                Console.WriteLine("5. Groups");
+                Console.WriteLine("6. Points");
+                Console.WriteLine("7. Exit");
+                Console.WriteLine("Select an option: ");
+                choice = int.Parse(Console.ReadLine());
+                if ((choice < 1) || (choice > 7))
+                    Console.WriteLine("Invalid input. Please enter your choice again.");
+            } while ((choice < 1) || (choice > 7));
+            return choice;
+        }
         public string DisplayMenu()
         {
             Console.WriteLine("Welcome to our School Groups Programme ");
