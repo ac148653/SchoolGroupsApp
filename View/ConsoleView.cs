@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 using SchoolGroupsApp.Model;
 
@@ -14,9 +15,9 @@ namespace SchoolGroupsApp.View
         public int LoginMenu()
         {
             int choice;
+            Console.WriteLine("Welcome to our School Groups Programme ");
             do
             {
-                Console.WriteLine("Welcome to our School Groups Programme ")
                 Console.WriteLine("LOGIN HERE:");
                 Console.WriteLine("1. Teacher Login");
                 Console.WriteLine("2. Student Login");
@@ -25,11 +26,32 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine("Select an option: ");
                 choice = int.Parse(Console.ReadLine());
                 if ((choice < 1) || (choice > 4))
-                    Console.WriteLine("Invalid input. Please enter your choice again");
+                    Console.WriteLine("Invalid input. Please enter your choice again.");
             } while ((choice < 1) || (choice > 4));
             return choice;
         }
 
+        public int TeacherMenu()
+        {
+            int choice;
+            Console.WriteLine("Welcome to Teacher Menu! ");
+            do
+            {
+                Console.WriteLine("1. Students ");
+                Console.WriteLine("2. Groups");
+                Console.WriteLine("3. Badges");
+                Console.WriteLine("4. Tasks");
+                Console.WriteLine("5. Teachers");
+                Console.WriteLine("6. Points");
+                Console.WriteLine("7. Reports");
+                Console.WriteLine("8. Exit");
+                Console.WriteLine("Select an option: ");
+                choice = int.Parse(Console.ReadLine());
+                if ((choice < 1) || (choice > 8))
+                    Console.WriteLine("Invalid input. Please enter your choice again.");
+            } while ((choice < 1) || (choice > 8));
+            return choice;
+        }
         public string DisplayMenu()
         {
             Console.WriteLine("Welcome to our School Groups Programme ");
