@@ -13,6 +13,7 @@ namespace SchoolGroupsApp.View
     {
         public int LoginMenu()
         {
+            int choice;
             do
             {
                 Console.WriteLine("Welcome to our School Groups Programme ")
@@ -22,7 +23,7 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine("3. Student Registration");
                 Console.WriteLine("4. Exit");
                 Console.WriteLine("Select an option: ");
-                int choice = int.Parse(Console.ReadLine());
+                choice = int.Parse(Console.ReadLine());
                 if ((choice < 1) || (choice > 4))
                     Console.WriteLine("Invalid input. Please enter your choice again");
             } while ((choice < 1) || (choice > 4));
