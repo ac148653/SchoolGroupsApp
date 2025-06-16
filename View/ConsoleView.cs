@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using SchoolGroupsApp.Model;
 
 namespace SchoolGroupsApp.View   
@@ -12,16 +13,22 @@ namespace SchoolGroupsApp.View
     {
         public int LoginMenu()
         {
-            Console.WriteLine("Welcome to our School Groups Programme ")
-            Console.WriteLine("LOGIN HERE:");
-            Console.WriteLine("1. Teacher Login");
-            Console.WriteLine("2. Student Login");
-            Console.WriteLine("3. Student Registration");
-            Console.WriteLine("4. Exit");
-            Console.WriteLine("Select an option: ");
-            int choice = int.Parse(Console.ReadLine());
+            do
+            {
+                Console.WriteLine("Welcome to our School Groups Programme ")
+                Console.WriteLine("LOGIN HERE:");
+                Console.WriteLine("1. Teacher Login");
+                Console.WriteLine("2. Student Login");
+                Console.WriteLine("3. Student Registration");
+                Console.WriteLine("4. Exit");
+                Console.WriteLine("Select an option: ");
+                int choice = int.Parse(Console.ReadLine());
+                if ((choice < 1) || (choice > 4))
+                    Console.WriteLine("Invalid input. Please enter your choice again");
+            } while ((choice < 1) || (choice > 4));
             return choice;
         }
+
         public string DisplayMenu()
         {
             Console.WriteLine("Welcome to our School Groups Programme ");
