@@ -36,7 +36,26 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-       public List<Groups> GetAllGroups()
+        public List<Students> GetAllStudents()
+        {
+            List<Students> students  = new List<Students>();
+            string sqlString = "SELECT * FROM StudentInvolvement.students";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int studentId = Convert.ToInt32(reader["studentID"]);
+                        string studentName = reader["studentName"].ToString();
+                        students.Add(new Students(studentId, studentName));
+                    }
+                }
+            }
+            return students;
+        }
+
+        public List<Groups> GetAllGroups()
         {
             List<Groups> groups = new List<Groups>();
             string sqlString = "SELECT * FROM GroupManagement.groups";
