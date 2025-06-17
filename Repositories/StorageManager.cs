@@ -47,7 +47,7 @@ namespace SchoolGroupsApp.Repositories
                     while (reader.Read())
                     {
                         int studentId = Convert.ToInt32(reader["studentID"]);
-                        string lastName = reader["LastName"].ToString();
+                        string lastName = reader["lastName"].ToString();
                         string firstName = reader["firstName"].ToString();
                         int yearLevel = Convert.ToInt32(reader["yearLevel"]);
                         string homeRoom = reader["homeroom"].ToString();
@@ -57,6 +57,28 @@ namespace SchoolGroupsApp.Repositories
             }
             return students;
         }
+
+        public List<Teachers> GetAllTeachers()
+        {
+            List<Teachers> teachers = new List<Teachers>();
+            string sqlString = "SELECT * FROM Staff.teachers";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int teacherId = Convert.ToInt32(reader["teacherID"]);
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        teachers.Add(new Teachers(teacherId, lastName, firstName));
+                    }
+                }
+            }
+            return teachers;
+        }
+
+
 
         public List<Groups> GetAllGroups()
         {
