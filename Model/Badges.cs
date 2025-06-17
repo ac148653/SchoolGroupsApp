@@ -9,14 +9,14 @@ namespace SchoolGroupsApp.Model
     public class Badges
     {
         private int BadgeID {  get; set; }
-        private string BadgeType { get; set; }
         private string BadgeName { get; set; }
+        private string BadgeLevel { get; set; }
 
-        public Badges(int badgeID, string badgeType, string badgeName)
+        public Badges(int badgeID, string badgeName, string badgeLevel)
         {
             BadgeID = badgeID;
-            BadgeType = badgeType;
             BadgeName = badgeName;
+            BadgeLevel = badgeLevel;
         }
 
     }
