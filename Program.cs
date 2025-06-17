@@ -22,11 +22,11 @@ namespace SchoolGroupsApp
             {
                 case 1:
                     {
-                        
+                  //Teacher login Screen. Login yes or no.       
                     }
                 case 2:
                     {
-
+//
                     }
                 case 3:
                     {
@@ -34,7 +34,7 @@ namespace SchoolGroupsApp
                     }
                 case 4:
                     {
-                        
+                        return;
                     }
             }
 

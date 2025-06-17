@@ -98,6 +98,26 @@ namespace SchoolGroupsApp.Repositories
             return badges;
         }
 
+        public List<Tasks> GetAllTasks()
+        {
+            List<Tasks> tasks = new List<Tasks>();
+            string sqlString = "SELECT * FROM GroupManagement.tasks";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int taskId = Convert.ToInt32(reader["taskID"]);
+                        string taskName = reader["taskName"].ToString();
+                        int pointsValue = Convert.ToInt32(reader["pointsValue"].ToString());
+                        int groupId = Convert.ToInt32(reader["groupID"]);
+                        tasks.Add(new Tasks(taskId, taskName, pointsValue, groupId));
+                    }
+                }
+            }
+            return tasks;
+        }
 
         public List<Groups> GetAllGroups()
         {

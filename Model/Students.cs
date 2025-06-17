@@ -12,15 +12,15 @@ namespace SchoolGroupsApp.Model
         private int StudentID { get; set; }
         private string LastName { get; set; }
         private string FirstName { get; set; }
-        private int Year { get; set; }
+        private int YearLevel { get; set; }
         private string HomeRoom { get; set; }
 
-        public Students(int studentID, string lastName, string firstName, int year, string homeRoom)
+        public Students(int studentID, string lastName, string firstName, int yearLevel, string homeRoom)
         {
             StudentID = studentID;
             LastName = lastName;
             FirstName = firstName;
-            Year = year;
+            YearLevel = yearLevel;
             HomeRoom = homeRoom;
         }
     }
