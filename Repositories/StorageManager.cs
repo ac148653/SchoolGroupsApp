@@ -78,6 +78,25 @@ namespace SchoolGroupsApp.Repositories
             return teachers;
         }
 
+        public List<Badges> GetAllBadges()
+        {
+            List<Badges> badges = new List<Badges>();
+            string sqlString = "SELECT * FROM GroupManagement.Badges";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int badgeId = Convert.ToInt32(reader["badgeID"]);
+                        string badgeLevel = reader["badgeLevel"].ToString();
+                        string badgeName = reader["badgeName"].ToString();
+                        badges.Add(new Badges(badgeId, badgeLevel, badgeName));
+                    }
+                }
+            }
+            return badges;
+        }
 
 
         public List<Groups> GetAllGroups()
