@@ -47,8 +47,11 @@ namespace SchoolGroupsApp.Repositories
                     while (reader.Read())
                     {
                         int studentId = Convert.ToInt32(reader["studentID"]);
-                        string studentName = reader["studentName"].ToString();
-                        students.Add(new Students(studentId, studentName));
+                        string lastName = reader["LastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        string homeRoom = reader["homeroom"].ToString();
+                        students.Add(new Students(studentId, lastName, firstName, yearLevel, homeRoom));
                     }
                 }
             }
