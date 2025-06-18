@@ -44,12 +44,12 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine("Please enter your password: ");
                 password = Console.ReadLine();
                 Console.WriteLine("Press r to Return to main menu");
-                if (userName.Equals r)
+                if (userName.Equals ("r"))
                         LoginMenu();
-                if ((choice < 1) || (choice > 4))
-                    Console.WriteLine("Invalid input. Please enter your choice again.");
-            } while ((choice < 1) || (choice > 4));
-            return choice;
+                if ((userName.Length > 10))
+                    Console.WriteLine("Invalid input. Please enter your username again. It must be less than 10 characters.");
+            } while ((userName.Length > 10));
+            return userName;
         }
 
         public int TeacherMenu()
