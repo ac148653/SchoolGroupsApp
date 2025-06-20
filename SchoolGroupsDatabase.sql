@@ -83,8 +83,9 @@ CREATE TABLE Staff.teachers (
 
 teacherID INT IDENTITY (1,1) PRIMARY KEY, 
 lastName VARCHAR (255), 
-firstName VARCHAR (255) NOT NULL ); 
-
+firstName VARCHAR (255) NOT NULL , 
+userName VARCHAR (255),
+password VARCHAR (255));
  
 
 CREATE TABLE Staff.teacherGroups ( 
@@ -1149,107 +1150,56 @@ INSERT INTO StudentInvolvement.studentBadges (studentGroupID, badgeID) VALUES (1
 
  
 
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Green', 'Hailey'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Smith', 'John'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Brown', 'Alice'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Williams', 'Michael'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Jones', 'Emma'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Taylor', 'David'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Anderson', 'Sophia'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Thomas', 'Daniel'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Jackson', 'Olivia'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('White', 'James'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Harris', 'Isabella'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Martin', 'Liam'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Thompson', 'Charlotte'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Garcia', 'Ethan'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Martinez', 'Amelia'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Roberts', 'Mason'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Lopez', 'Harper'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Walker', 'Benjamin'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Perez', 'Ella'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Young', 'Alexander'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('King', 'Scarlett'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Scott', 'William'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Adams', 'Grace'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Baker', 'Jack'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Gonzalez', 'Avery'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Nelson', 'Zoe'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Carter', 'Lucas'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Mitchell', 'Mia'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Robinson', 'Jackson'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Clark', 'Chloe'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Rodriguez', 'Max'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Lewis', 'Sophie'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Lee', 'Henry'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Walker', 'Amos'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Hall', 'Sophia'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Allen', 'Eli'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Sanchez', 'Hazel'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Wright', 'Theo'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Hill', 'Chloe'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Bennett', 'Aaron'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Gomez', 'Oliver'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Diaz', 'Harper'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Martin', 'Aiden'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Morris', 'Lily'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Rogers', 'Jayden'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Perez', 'Maya'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Hughes', 'Mackenzie'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Cole', 'Elijah'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Ross', 'Caden'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Flores', 'Isla'); 
-
-INSERT INTO Staff.teachers (lastName, firstName) VALUES ('Howard', 'Nora'); 
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Sanchez', 'Leo', 'LSA', 'password51');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Morris', 'Nora', 'NMO', 'password52');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Rogers', 'Aaron', 'ARO', 'password53');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Reed', 'Bella', 'BRE', 'password54');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Cook', 'Christian', 'CCR', 'password55');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Morgan', 'Lucy', 'LMO', 'password56');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Bell', 'Jonathan', 'JBE', 'password57');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Murphy', 'Sophie', 'SMU', 'password58');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Bailey', 'Anthony', 'ABA', 'password59');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Rivera', 'Claire', 'CRI', 'password60');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Cooper', 'Julian', 'JCO', 'password61');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Richardson', 'Audrey', 'ARI', 'password62');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Cox', 'Adrian', 'ACO', 'password63');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Howard', 'Ellie', 'EHO', 'password64');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Ward', 'Cameron', 'CWA', 'password65');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Torres', 'Alexa', 'ATO', 'password66');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Peterson', 'Lincoln', 'LPE', 'password67');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Gray', 'Stella', 'SGR', 'password68');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Ramirez', 'Jason', 'JRA', 'password69');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('James', 'Paisley', 'PJA', 'password70');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Watson', 'Roman', 'RWA', 'password71');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Brooks', 'Elena', 'EBR', 'password72');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Kelly', 'Brayden', 'BKE', 'password73');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Sanders', 'Hailey', 'HSA', 'password74');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Price', 'Grayson', 'GPR', 'password75');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Bennett', 'Sadie', 'SBE', 'password76');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Wood', 'Easton', 'EWO', 'password77');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Barnes', 'Ariana', 'ABA', 'password78');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Ross', 'Dominic', 'DRO', 'password79');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Henderson', 'Piper', 'PHE', 'password80');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Coleman', 'Xavier', 'XCO', 'password81');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Jenkins', 'Kinsley', 'KJE', 'password82');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Perry', 'Bryson', 'BPE', 'password83');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Powell', 'Valentina', 'VPO', 'password84');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Long', 'Miles', 'MLG', 'password85');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Patterson', 'Melanie', 'MPA', 'password86');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Hughes', 'Kai', 'KHU', 'password87');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Flores', 'Julia', 'JFL', 'password88');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Washington', 'George', 'GWA', 'password89');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Butler', 'Vivian', 'VBU', 'password90');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Simmons', 'Ezekiel', 'ESI', 'password91');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Foster', 'Faith', 'FFO', 'password92');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Gonzales', 'Caleb', 'CGO', 'password93');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Bryant', 'Liliana', 'LBR', 'password94');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Alexander', 'Kevin', 'KAL', 'password95');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Russell', 'Jasmine', 'JRU', 'password96');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Griffin', 'Max', 'MGR', 'password97');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Diaz', 'Naomi', 'NDI', 'password98');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Hayes', 'Tristan', 'THA', 'password99');
+INSERT INTO Staff.teachers (lastName, firstName, userName, password) VALUES ('Myers', 'Jade', 'JMY', 'password100');
 
  
 
