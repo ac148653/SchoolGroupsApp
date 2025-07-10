@@ -266,6 +266,17 @@ namespace SchoolGroupsApp
             }
         }
 
+        private static void UpdateTeacherName()
+        {
+            view.DisplayMessage("Enter the teacher Id to update: ");
+            int teacherId = view.GetIntInput();
+            view.DisplayMessage("Enter the new last name: ");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the new first name: ");
+            string firstName = view.GetInput();
+            int rowsAffected = storageManager.UpdateTeacherName(teacherId, lastName, firstName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
