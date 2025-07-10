@@ -14,14 +14,19 @@ namespace SchoolGroupsApp.Model
         public string FirstName { get; set; }
         public int YearLevel { get; set; }
         public string HomeRoom { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
 
-        public Students(int studentID, string lastName, string firstName, int yearLevel, string homeRoom)
+
+        public Students(int studentID, string lastName, string firstName, int yearLevel, string homeRoom, string userName, string password)
         {
             StudentID = studentID;
             LastName = lastName;
             FirstName = firstName;
             YearLevel = yearLevel;
             HomeRoom = homeRoom;
+            UserName = userName;
+            Password = password;
         }
     }
 }
