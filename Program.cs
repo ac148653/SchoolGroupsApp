@@ -99,9 +99,6 @@ namespace SchoolGroupsApp
             } while (studentsChoice == 5);
         }
       
-
-            
-
         
 
         public static void StudentsChoice(int choice)
@@ -127,7 +124,8 @@ namespace SchoolGroupsApp
                     AddStudent();
                     break;
                 case 6:
-
+                    DeleteStudentByName();
+                    break;
             }
         }
 
@@ -201,6 +199,25 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void GroupsChoice(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    List<Groups> groups = storageManager.GetAllGroups();
+                    view.DisplayGroups(groups);
+                    break;
+                case 2:
+                    UpdateGroupName();
+                    break;
+                case 3:
+                    InsertNewGroup();
+                    break;
+                case 4:
+                    DeleteGroupByName();
+                    break;
+            }
+        }
         /*private static void InsertNewGroup()
         {
             view.DisplayMessage("Enter the new group name: ");
