@@ -226,6 +226,19 @@ namespace SchoolGroupsApp.View
             return studentChoice;
         }
 
+        public int Groups()
+        {
+            int groupChoice;
+            Console.WriteLine("Welcome to our School Groups Programme ");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all records in Groups");
+            Console.WriteLine("2. Update a group's name");
+            Console.WriteLine("3. Insert a new group");
+            Console.WriteLine("4. Delete a group by group name");
+            Console.Write("Select an option: ");
+            groupChoice = int.Parse(Console.ReadLine());
+            return groupChoice;
+        }
         public int StudentMenu()
         {
             int choice;
@@ -245,17 +258,6 @@ namespace SchoolGroupsApp.View
                     Console.WriteLine("Invalid input. Please enter your choice again.");
             } while ((choice < 1) || (choice > 7));
             return choice;
-        }
-        public string DisplayMenu()
-        {
-            Console.WriteLine("Welcome to our School Groups Programme ");
-            Console.WriteLine("Menu: ");
-            Console.WriteLine("1. View all records in Groups");
-            Console.WriteLine("2. Update a group's name by groupID");
-            Console.WriteLine("3. Insert a new group");
-            Console.WriteLine("4. Delete a group by group_name");
-            Console.Write("Select an option: ");
-            return Console.ReadLine();
         }
         public void DisplayGroups(List<Groups> groups)
         {
