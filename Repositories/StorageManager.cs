@@ -136,6 +136,16 @@ namespace SchoolGroupsApp.Repositories
             return teachers;
         }
 
+        public int UpdateTeacherName(int teacherId, string lastName, string firstName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Staff.teachers SET lastName = @LastName, firstName = @FirstName WHERE lastName = @LastName AND firstName = @FirstName", conn))
+            {
+                cmd.Parameters.AddWithValue("@LastName", lastName);
+                cmd.Parameters.AddWithValue("@FirstName", firstName);
+                cmd.Parameters.AddWithValue("@StudentID", teacherId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
         public List<Badges> GetAllBadges()
         {
             List<Badges> badges = new List<Badges>();
