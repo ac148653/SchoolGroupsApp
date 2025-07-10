@@ -136,18 +136,48 @@ namespace SchoolGroupsApp.View
             if (exit.Equals("x"))
                 return 2;
             Console.WriteLine("REGISTER HERE:");
-            Console.WriteLine("Please enter your first name: ");
-            firstName = Console.ReadLine();
-            Console.WriteLine("Please enter your last name: ");
-            lastName = Console.ReadLine();
-            Console.WriteLine("Please enter your year level: ");
-            yearLevel = int.Parse(Console.ReadLine());
-            Console.WriteLine("Please enter your homeroom: ");
-            homeRoom = Console.ReadLine();
-            Console.WriteLine("Please enter a username: ");
-            userName = Console.ReadLine();
-            Console.WriteLine("Please enter a password: ");
-            password = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("Please enter your first name: ");
+                firstName = Console.ReadLine();
+                if(firstName.Length > 30)
+                    Console.WriteLine("Invalid input. Please enter your first name again. It must be less than 30 characters.");
+            } while (firstName.Length > 30);
+            do
+            {
+                Console.WriteLine("Please enter your last name: ");
+                lastName = Console.ReadLine();
+                if (lastName.Length > 30)
+                    Console.WriteLine("Invalid input. Please enter your last name again. It must be less than 30 characters.");
+            } while (lastName.Length > 30);
+            do
+            {
+                Console.WriteLine("Please enter your year level: ");
+                yearLevel = int.Parse(Console.ReadLine());
+                if (yearLevel < 9 || yearLevel > 13)
+                    Console.WriteLine("Invalid input. Please enter your year level again. It must be between 9 to 13.");
+            } while (yearLevel < 9 || yearLevel > 13);
+            do
+            {
+                Console.WriteLine("Please enter your homeroom: ");
+                homeRoom = Console.ReadLine();
+                if (homeRoom.Length > 5)
+                    Console.WriteLine("Invalid input. Please enter your homeroom again. It must be 5 characters long.");
+            } while (homeRoom.Length > 5);
+            do
+            {
+                Console.WriteLine("Please enter a username: ");
+                userName = Console.ReadLine();
+                if (userName.Length > 10 || userName.Length < 5)
+                    Console.WriteLine("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
+            } while (userName.Length > 10 || userName.Length < 5);
+            do
+            {
+                Console.WriteLine("Please enter a password: ");
+                password = Console.ReadLine();
+                if (password.Length > 10 || password.Length < 5)
+                    Console.WriteLine("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
+            } while (password.Length > 10 || password.Length < 5);
             Console.WriteLine("Registration successful");
             int studentID = 0;
             Students student1 = new Students(studentID, lastName, firstName, yearLevel, homeRoom, userName, password);
