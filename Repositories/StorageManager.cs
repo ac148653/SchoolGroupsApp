@@ -58,6 +58,18 @@ namespace SchoolGroupsApp.Repositories
             return students;
         }
 
+        public int AddStudent(Students student1)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO StudentInvolvement.students (lastName, firstName, yearLevel, homeroom, userName, password) " +
+                "VALUES (@LastName, @FirstName, @YearLevel, @HomeRoom, @UserName, @Password); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@LastName, @FirstName, @YearLevel, @HomeRoom, @UserName, @Password", student1.LastName, student1.FirstName +
+                    student1.YearLevel, student1.HomeRoom, student1.UserName, student1.Password);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+
         public List<Teachers> GetAllTeachers()
         {
             List<Teachers> teachers = new List<Teachers>();
