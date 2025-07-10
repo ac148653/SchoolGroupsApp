@@ -103,6 +103,16 @@ namespace SchoolGroupsApp.Repositories
                 return cmd.ExecuteNonQuery();
             }
         }
+        public int DeleteStudentByName(string lastName, string firstName)
+        {
+            using SqlCommand cmd = new SqlCommand("DELETE FROM SchoolInvolvement.students WHERE lastName " +
+                "= @LastName AND firstName = @FirstName", conn);
+            {
+                cmd.Parameters.AddWithValue("@LastName", lastName);
+                cmd.Parameters.AddWithValue("@FirstName", firstName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
 
         public List<Teachers> GetAllTeachers()
         {
