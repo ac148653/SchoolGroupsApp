@@ -277,6 +277,22 @@ namespace SchoolGroupsApp
             int rowsAffected = storageManager.UpdateTeacherName(teacherId, lastName, firstName);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
+
+        private static void AddTeacher()
+        {
+            view.DisplayMessage("Enter the new teacher's first name: ");
+            string firstName = view.GetInput();
+            view.DisplayMessage("Enter the teacher's last name: ");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter a username for the teacher: ");
+            string userName = view.GetInput();
+            view.DisplayMessage("Enter a password for the teacher: ");
+            string password = view.GetInput();
+            int teacherID = 0;
+            Teachers teacher1 = new Teachers(teacherID, lastName, firstName, userName, password);
+            int generateId = storageManager.AddTeacher(teacher1);
+            Console.WriteLine($"New teacher inserted with ID: {generateId}");
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
