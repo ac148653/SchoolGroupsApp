@@ -195,9 +195,9 @@ namespace SchoolGroupsApp.View
             {
                 Console.WriteLine("1. Students ");
                 Console.WriteLine("2. Groups");
-                Console.WriteLine("3. Badges");
+                Console.WriteLine("3. Teachers");
                 Console.WriteLine("4. Tasks");
-                Console.WriteLine("5. Teachers");
+                Console.WriteLine("5. Badges");
                 Console.WriteLine("6. Points");
                 Console.WriteLine("7. Reports");
                 Console.WriteLine("8. Exit");
@@ -229,15 +229,31 @@ namespace SchoolGroupsApp.View
         public int Groups()
         {
             int groupChoice;
-            Console.WriteLine("Welcome to our School Groups Programme ");
+            Console.WriteLine("Welcome to Groups");
             Console.WriteLine("Menu: ");
-            Console.WriteLine("1. View all records in Groups");
+            Console.WriteLine("1. View all Groups");
             Console.WriteLine("2. Update a group's name");
             Console.WriteLine("3. Insert a new group");
-            Console.WriteLine("4. Delete a group by group name");
+            Console.WriteLine("4. Delete a group");
+            Console.WriteLine("5. Exit");
             Console.Write("Select an option: ");
             groupChoice = int.Parse(Console.ReadLine());
             return groupChoice;
+        }
+
+        public int Teachers()
+        {
+            int teacherChoice;
+            Console.WriteLine("Welcome to Teachers");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all Teachers");
+            Console.WriteLine("2. Update a teacher's name");
+            Console.WriteLine("3. Add a new teacher");
+            Console.WriteLine("4. Delete a teacher");
+            Console.WriteLine("5. Exit");
+            Console.Write("Select an option: ");
+            teacherChoice = int.Parse(Console.ReadLine());
+            return teacherChoice;
         }
         public int StudentMenu()
         {
