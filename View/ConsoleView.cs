@@ -34,8 +34,20 @@ namespace SchoolGroupsApp.View
                     Console.WriteLine("Invalid input. Please enter your choice again.");
             } while ((choice < 1) || (choice > 4));
             return choice;
-        }   
+        }
 
+        public int CheckTeacherLogin(string userName, string password)
+        {
+            List<Teachers> teachers = storageManager.GetAllTeachers();
+
+            foreach (Teachers teacher in teachers)
+            {
+                if (userName.Equals(teacher.UserName) && password.Equals(teacher.Password))
+                    return 1;
+            }
+            Console.WriteLine("Your username or password is incorrect. Please enter them again.");
+            return 0;
+        }
         public int TeacherLogin()
         {
             string userName;
@@ -56,28 +68,14 @@ namespace SchoolGroupsApp.View
                     Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
                 if (password.Length > 10)
                     Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters");
-            } while ((userName.Length > 10) && (password.Length > 10));
+            } while ((userName.Length > 10) || (password.Length > 10));
            int r  = CheckTeacherLogin(userName, password);
+            if (r == 0)
+                TeacherLogin();
             return r;
            
         }
-        public int CheckTeacherLogin(string userName, string password)
-        {
-            List<Teachers> teachers = storageManager.GetAllTeachers();
-            
-
-            foreach (Teachers teacher in teachers)
-            {
-                if (userName.Equals(teacher.UserName) && password.Equals(teacher.Password))
-                    return 1;
-                else
-                {
-                    Console.WriteLine("Your username or password is incorrect. Please enter them again.");
-                    TeacherLogin();
-                }
-
-            }
-        }
+        
 
         public int TeacherMenu()
         {
