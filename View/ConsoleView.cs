@@ -8,6 +8,8 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Azure.Identity;
+using Microsoft.VisualBasic;
 using SchoolGroupsApp.Model;
 using SchoolGroupsApp.Repositories;
 
@@ -128,10 +130,15 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("Welcome to Student Register");
             Console.WriteLine("REGISTER HERE:");
             Console.WriteLine("Please enter your first name: ");
+            firstName = Console.ReadLine();
             Console.WriteLine("Please enter your last name: ");
+            lastName = Console.ReadLine();
             Console.WriteLine("Please enter your year level: ");
+            year = Console.ReadLine();
             Console.WriteLine("Please enter your homeroom: ");
+            homeroom = Console.ReadLine();
             Console.WriteLine("Please enter a username: ");
+            userName = Console.ReadLine();
             Console.WriteLine("Please enter a password: ");
             Console.WriteLine("Press 2 to return to Main Menu");
         }
