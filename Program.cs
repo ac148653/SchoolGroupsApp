@@ -124,6 +124,9 @@ namespace SchoolGroupsApp
                     UpdateStudentHomeroom();
                     break;
                 case 5:
+                    AddStudent();
+                    break;
+                case 6:
 
             }
         }
@@ -188,6 +191,15 @@ namespace SchoolGroupsApp
             int generateId = storageManager.AddStudent(student1);
             Console.WriteLine($"New student inserted with ID: {generateId}");
         }
+        private static void DeleteStudentByName()
+        {
+            view.DisplayMessage("Enter the last name of the student to remove: ");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the first name of the student to remove: ");
+            int rowsAffected = storageManager.DeleteStudentByName(lastName, firstName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         /*private static void InsertNewGroup()
         {
             view.DisplayMessage("Enter the new group name: ");
