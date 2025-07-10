@@ -146,6 +146,20 @@ namespace SchoolGroupsApp.Repositories
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public int AddTeacher(Teachers teacher1)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO Staff.teachers (lastName, firstName, userName, password) " +
+                "VALUES (@LastName, @FirstName, @UserName, @Password); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@LastName", teacher1.LastName);
+                cmd.Parameters.AddWithValue("@FirstName", teacher1.FirstName);
+                cmd.Parameters.AddWithValue("@UserName", teacher1.UserName);
+                cmd.Parameters.AddWithValue("@Password", teacher1.Password);
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
         public List<Badges> GetAllBadges()
         {
             List<Badges> badges = new List<Badges>();
