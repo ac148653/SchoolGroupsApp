@@ -34,11 +34,20 @@ namespace SchoolGroupsApp
                         }
                     case 2:
                         {
+                            r = view.StudentLogin();
+                            if (r == 1)
+                                StudentMenuChoice();
+                            else 
+                                break;
 
                         }
                     case 3:
                         {
-
+                            r = view.StudentRegister();
+                            if (r == 1)
+                                StudentMenuChoice();
+                            else
+                                break;
                         }
                     case 4:
                         {
@@ -47,6 +56,7 @@ namespace SchoolGroupsApp
                 }
 
             } while (r == 2);
+
             view = new ConsoleView();
             string choice = view.DisplayMenu();
 

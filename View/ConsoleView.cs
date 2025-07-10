@@ -125,12 +125,16 @@ namespace SchoolGroupsApp.View
             return r;
         }
 
-        public void StudentRegister()
+        public int StudentRegister()
         {
-            string firstName, lastName, userName, password, homeRoom;
+            string firstName, lastName, userName, password, homeRoom, exit;
             int year;
 
             Console.WriteLine("Welcome to Student Register");
+            Console.WriteLine("If you don't want to register and want to exit, please enter x");
+            exit = Console.ReadLine().ToLower();
+            if (exit.Equals("x"))
+                return 2;
             Console.WriteLine("REGISTER HERE:");
             Console.WriteLine("Please enter your first name: ");
             firstName = Console.ReadLine();
@@ -143,7 +147,9 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("Please enter a username: ");
             userName = Console.ReadLine();
             Console.WriteLine("Please enter a password: ");
+            password = Console.ReadLine();
             Console.WriteLine("Press 2 to return to Main Menu");
+            return 1;
         }
 
         public int TeacherMenu()
