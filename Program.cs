@@ -32,6 +32,7 @@ namespace SchoolGroupsApp
                             if (r == 2)
                                 break;
                         }
+                        break;
                     case 2:
                         {
                             r = view.StudentLogin();
@@ -39,8 +40,8 @@ namespace SchoolGroupsApp
                                 StudentMenuChoice();
                             if (r == 2)
                                 break;
-
                         }
+                        break;
                     case 3:
                         {
                             r = view.StudentRegister();
@@ -49,6 +50,7 @@ namespace SchoolGroupsApp
                             if (r == 2)
                                 break;
                         }
+                        break;
                     case 4:
                         {
                             return;
