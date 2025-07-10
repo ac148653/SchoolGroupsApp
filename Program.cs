@@ -115,16 +115,19 @@ namespace SchoolGroupsApp
                     }
                     break;
                 case 2:
-                    {
-
-                    }
+                    UpdateStudentName();
+                    break;
+                case 3:
+                    UpdateStudentYear();
+                    break;
+                case 4:
 
             }
         }
 
         private static void UpdateStudentName()
         {
-            view.DisplayMessage("Enter the studentId to update: ");
+            view.DisplayMessage("Enter the student Id to update: ");
             int studentId = view.GetIntInput();
             view.DisplayMessage("Enter the new last name: ");
             string lastName = view.GetInput();
@@ -133,6 +136,17 @@ namespace SchoolGroupsApp
             int rowsAffected = storageManager.UpdateStudentName(studentId, lastName, firstName);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
+
+        private static void UpdateStudentYear()
+        {
+            view.DisplayMessage("Enter the student ID to update: ");
+            int studentId = view.GetIntInput();
+            view.DisplayMessage("Enter the new year level: ");
+            int yearLevel = view.GetIntInput();
+            int rowsAffected = storageManager.UpdateStudentYear(studentId, yearLevel);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void UpdateGroupName()
         {
             view.DisplayMessage("Enter the groupId to update: ");
