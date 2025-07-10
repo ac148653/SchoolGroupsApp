@@ -1,5 +1,6 @@
 ﻿ using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -54,6 +55,13 @@ namespace SchoolGroupsApp.View
                     Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
             } while ((userName.Length > 10));
             List<Teachers> teachers = storageManager.GetAllTeachers();
+            foreach(Teachers teacher in teachers)
+            {
+                if (userName.Equals teacher.userName && password.Equals teacher.password)
+
+                    return 1;
+                
+            }
             
         }
 
