@@ -59,14 +59,14 @@ namespace SchoolGroupsApp.View
             return r;
            
         }
-        public int checkTeacherLogin(string UN, string PW)
+        public void CheckTeacherLogin(string userName, string password)
         {
             List<Teachers> teachers = storageManager.GetAllTeachers();
             
 
             foreach (Teachers teacher in teachers)
             {
-                if (UN.Equals(teacher.UserName) && PW.Equals(teacher.Password))
+                if (userName.Equals(teacher.UserName) && password.Equals(teacher.Password))
                     return 1;
                 else
                 {
