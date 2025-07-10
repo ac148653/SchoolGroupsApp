@@ -52,10 +52,12 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine("Press r to Return to main menu");
                 if (userName.Equals ("r"))
                         LoginMenu();
-                if ((userName.Length > 10))
+                if (userName.Length > 10)
                     Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
-            } while ((userName.Length > 10));
-           int r  = checkTeacherLogin(userName, password);
+                if (password.Length > 10)
+                    Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters");
+            } while ((userName.Length > 10) && (password.Length > 10));
+           int r  = CheckTeacherLogin(string userName, string password);
             return r;
            
         }

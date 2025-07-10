@@ -22,11 +22,13 @@ namespace SchoolGroupsApp
             {
                 case 1:
                     {
-                  //Teacher login Screen. Login yes or no.       
+                       int r = view.TeacherLogin();
+                        if (r == 1)
+                            TeacherMenuChoice();
                     }
                 case 2:
                     {
-//
+
                     }
                 case 3:
                     {

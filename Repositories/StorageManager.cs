@@ -71,8 +71,10 @@ namespace SchoolGroupsApp.Repositories
                         int teacherId = Convert.ToInt32(reader["teacherID"]);
                         string lastName = reader["lastName"].ToString();
                         string firstName = reader["firstName"].ToString();
-                        teachers.Add(new Teachers(teacherId, lastName, firstName));
-                    }
+                        string userName = reader["userName"].ToString();
+                        string password = reader["password"].ToString();
+                        teachers.Add(new Teachers(teacherId, lastName, firstName, userName, password));
+                    } 
                 }
             }
             return teachers;
