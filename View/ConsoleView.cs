@@ -123,6 +123,18 @@ namespace SchoolGroupsApp.View
             return r;
         }
 
+        public void StudentRegister()
+        {
+            Console.WriteLine("Welcome to Student Register");
+            Console.WriteLine("REGISTER HERE:");
+            Console.WriteLine("Please enter your first name: ");
+            Console.WriteLine("Please enter your last name: ");
+            Console.WriteLine("Please enter your year level: ");
+            Console.WriteLine("Please enter your homeroom: ");
+            Console.WriteLine("Please enter a username: ");
+            Console.WriteLine("Please enter a password: ");
+            Console.WriteLine("Press 2 to return to Main Menu");
+        }
 
         public int TeacherMenu()
         {
