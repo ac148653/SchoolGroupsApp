@@ -13,6 +13,8 @@ namespace SchoolGroupsApp.View
 {
     public class ConsoleView
     {
+        private static StorageManager storageManager;
+
         public int LoginMenu()
         {
             int choice;
@@ -51,7 +53,7 @@ namespace SchoolGroupsApp.View
                 if ((userName.Length > 10))
                     Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
             } while ((userName.Length > 10));
-            string teacherList = GetAllTeachers();
+            List<Teachers> teachers = storageManager.GetAllTeachers();
             
         }
 
