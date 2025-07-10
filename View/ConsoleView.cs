@@ -215,10 +215,12 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("Welcome to Students");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all students");
-            Console.WriteLine("2. Update a student's name by studentID");
-            Console.WriteLine("3. Add a new student");
-            Console.WriteLine("4. Delete a student by student name");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("2. Update student's name");
+            Console.WriteLine("3. Update student's year level");
+            Console.WriteLine("4. Update student's homeroom");
+            Console.WriteLine("5. Add a new student");
+            Console.WriteLine("6. Delete a student");
+            Console.WriteLine("7. Exit");
             Console.Write("Select an option: ");
             studentChoice = int.Parse(Console.ReadLine());  
             return studentChoice;

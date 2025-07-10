@@ -9,7 +9,7 @@ using SchoolGroupsApp.View;
 
 namespace SchoolGroupsApp
 {
-    internal class Program
+    public class Program
     {
         private static StorageManager storageManager;
         private static ConsoleView view;
@@ -60,79 +60,53 @@ namespace SchoolGroupsApp
             } while (r == 2);
         }
 
-
-            private static void TeacherMenuChoice()
+        private static void TeacherMenuChoice()
+        {
+            int studentsChoice;
+            do
             {
-                int studentsChoice;
-                do
+                int teacherChoice = view.TeacherMenu();
+                switch (teacherChoice)
                 {
-                    int teacherChoice = view.TeacherMenu();
-                    switch (teacherChoice)
-                    {
-                        case 1:
+                    case 1:
+                        {
                             studentsChoice = view.Students();
-                            if (studentsChoice == 1 || studentsChoice == 2 || studentsChoice == 3 || studentsChoice == 4)
-                            StudentsChoice();
+                            if (studentsChoice >= 1 && studentsChoice <= 4)
+                                StudentsChoice(studentsChoice);
                             if (studentsChoice == 5)
                                 break;
-                        case 2:
+                        }
+                        break;
+                    case 2:
 
-                            break;
-                        case 3:
+                        break;
+                    case 3:
 
-                            break;
-                        case 4:
+                        break;
+                    case 4:
 
-                            break;
-                        case 5:
+                        break;
+                    case 5:
 
-                            break;
-                        case 6:
-                        case 7:
-                        case 8:
-                        default:
-                            Console.WriteLine("Invalid option. Please try again.");
-                            break;
-                    }
-                } while (studentsChoice == 5);
-            }
-            
-            view = new ConsoleView();
-            string choice = view.DisplayMenu();
-
-            switch (choice)
-            {
-                case "1":
-                    {
-                        List<Groups> groups = storageManager.GetAllGroups();
-                        view.DisplayGroups(groups);
-                    }
-                    break;
-                case "2":
-                    UpdateGroupName();
-                    break;
-                case "3":
-                   InsertNewGroup();
-                    break;
-                case "4":
-                   DeleteGroupByName();
-                    break;
-                /*case "5":
-                    exit = true;
-                    break;*/
-                default:
-                    Console.WriteLine("Invalid option. Please try again.");
-                    break;
-            }
-
-            storageManager.CloseConnection();
-
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            } while (studentsChoice == 5);
         }
+      
 
-        private static void StudentsChoice()
+            
+
+        
+
+        public static void StudentsChoice(int choice)
         {
-            int studentsChoice = view.Students();
-            switch (studentsChoice)
+            switch (choice)
             {
                 case 1:
                     {
@@ -141,6 +115,9 @@ namespace SchoolGroupsApp
                     }
                     break;
                 case 2:
+                    {
+
+                    }
 
             }
         }
@@ -179,4 +156,36 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
     }
+      private static void GroupsChoice()
+        {
+            view = new ConsoleView();
+            string choice = view.DisplayMenu();
+
+            switch (choice)
+            {
+                case "1":
+                    {
+                        List<Groups> groups = storageManager.GetAllGroups();
+                        view.DisplayGroups(groups);
+                    }
+                    break;
+                case "2":
+                    UpdateGroupName();
+                    break;
+                case "3":
+                    InsertNewGroup();
+                    break;
+                case "4":
+                    DeleteGroupByName();
+                    break;
+                /*case "5":
+                    exit = true;
+                    break;*/
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+        }
+storageManager.CloseConnection();
 }
+} 

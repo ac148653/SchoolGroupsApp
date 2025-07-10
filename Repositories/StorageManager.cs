@@ -74,6 +74,15 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int UpdateStudentInformation(int groupId, string groupName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.groups SET groupName = @GroupName WHERE groupName = @GroupName", conn))
+            {
+                cmd.Parameters.AddWithValue("@GroupName", groupName);
+                cmd.Parameters.AddWithValue("@GroupID", groupId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
 
         public List<Teachers> GetAllTeachers()
         {
