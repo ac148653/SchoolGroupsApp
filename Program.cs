@@ -29,7 +29,7 @@ namespace SchoolGroupsApp
                             r = view.TeacherLogin();
                             if (r == 1)
                                 TeacherMenuChoice();
-                            else
+                            if (r == 2)
                                 break;
                         }
                     case 2:
@@ -37,7 +37,7 @@ namespace SchoolGroupsApp
                             r = view.StudentLogin();
                             if (r == 1)
                                 StudentMenuChoice();
-                            else 
+                            if(r == 2) 
                                 break;
 
                         }
@@ -46,7 +46,7 @@ namespace SchoolGroupsApp
                             r = view.StudentRegister();
                             if (r == 1)
                                 StudentMenuChoice();
-                            else
+                            if(r == 2)
                                 break;
                         }
                     case 4:
