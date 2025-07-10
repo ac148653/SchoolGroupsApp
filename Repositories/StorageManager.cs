@@ -89,7 +89,16 @@ namespace SchoolGroupsApp.Repositories
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE StudentInvolvement.students SET yearLevel = @YearLevel WHERE yearLevel = @YearLevel", conn))
             {
-                cmd.Parameters.AddWithValue("@LastName", yearLevel);
+                cmd.Parameters.AddWithValue("@YearLevel", yearLevel);
+                cmd.Parameters.AddWithValue("@StudentID", studentId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public int UpdateStudentHomeroom(int studentId, string homeRoom)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE StudentInvolvement.students SET homeroom = @Homeroom WHERE homeroom = @homeroom", conn))
+            {
+                cmd.Parameters.AddWithValue("@HomeRoom", homeRoom);
                 cmd.Parameters.AddWithValue("@StudentID", studentId);
                 return cmd.ExecuteNonQuery();
             }
