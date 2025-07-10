@@ -85,6 +85,16 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int UpdateStudentYear(int studentId, int yearLevel)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE StudentInvolvement.students SET yearLevel = @YearLevel WHERE yearLevel = @YearLevel", conn))
+            {
+                cmd.Parameters.AddWithValue("@LastName", yearLevel);
+                cmd.Parameters.AddWithValue("@StudentID", studentId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Teachers> GetAllTeachers()
         {
             List<Teachers> teachers = new List<Teachers>();
