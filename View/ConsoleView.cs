@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Xml;
@@ -54,15 +55,26 @@ namespace SchoolGroupsApp.View
                 if ((userName.Length > 10))
                     Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
             } while ((userName.Length > 10));
+           int r  = checkTeacherLogin(userName, password);
+            return r;
+           
+        }
+        public int checkTeacherLogin(string UN, string PW)
+        {
             List<Teachers> teachers = storageManager.GetAllTeachers();
-            foreach(Teachers teacher in teachers)
-            {
-                if (userName.Equals teacher.userName && password.Equals teacher.password)
-
-                    return 1;
-                
-            }
             
+
+            foreach (Teachers teacher in teachers)
+            {
+                if (UN.Equals(teacher.UserName) && PW.Equals(teacher.Password))
+                    return 1;
+                else
+                {
+                    Console.WriteLine("Your username or password is incorrect. Please enter them again.");
+                    TeacherLogin();
+                }
+
+            }
         }
 
         public int TeacherMenu()
