@@ -71,9 +71,9 @@ namespace SchoolGroupsApp
                     case 1:
                         {
                             studentsChoice = view.Students();
-                            if (studentsChoice >= 1 && studentsChoice <= 4)
+                            if (studentsChoice >= 1 && studentsChoice <= 6)
                                 StudentsChoice(studentsChoice);
-                            if (studentsChoice == 5)
+                            if (studentsChoice == 7)
                                 break;
                         }
                         break;
@@ -120,6 +120,18 @@ namespace SchoolGroupsApp
                     }
 
             }
+        }
+
+        private static void UpdateStudentName()
+        {
+            view.DisplayMessage("Enter the studentId to update: ");
+            int studentId = view.GetIntInput();
+            view.DisplayMessage("Enter the new last name: ");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the new first name: ");
+            string firstName = view.GetInput();
+            int rowsAffected = storageManager.UpdateStudentName(studentId, lastName, firstName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
         private static void UpdateGroupName()
         {
