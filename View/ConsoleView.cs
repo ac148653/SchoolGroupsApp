@@ -127,6 +127,9 @@ namespace SchoolGroupsApp.View
 
         public void StudentRegister()
         {
+            string firstName, lastName, userName, password, homeRoom;
+            int year;
+
             Console.WriteLine("Welcome to Student Register");
             Console.WriteLine("REGISTER HERE:");
             Console.WriteLine("Please enter your first name: ");
@@ -134,9 +137,9 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("Please enter your last name: ");
             lastName = Console.ReadLine();
             Console.WriteLine("Please enter your year level: ");
-            year = Console.ReadLine();
+            year = int.Parse(Console.ReadLine());
             Console.WriteLine("Please enter your homeroom: ");
-            homeroom = Console.ReadLine();
+            homeRoom = Console.ReadLine();
             Console.WriteLine("Please enter a username: ");
             userName = Console.ReadLine();
             Console.WriteLine("Please enter a password: ");
