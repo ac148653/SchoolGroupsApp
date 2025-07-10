@@ -63,8 +63,13 @@ namespace SchoolGroupsApp.Repositories
             using SqlCommand cmd = new SqlCommand("INSERT INTO StudentInvolvement.students (lastName, firstName, yearLevel, homeroom, userName, password) " +
                 "VALUES (@LastName, @FirstName, @YearLevel, @HomeRoom, @UserName, @Password); SELECT SCOPE_IDENTITY();", conn);
             {
-                cmd.Parameters.AddWithValue("@LastName, @FirstName, @YearLevel, @HomeRoom, @UserName, @Password", student1.LastName, student1.FirstName +
-                    student1.YearLevel, student1.HomeRoom, student1.UserName, student1.Password);
+                cmd.Parameters.AddWithValue("@LastName", student1.LastName);
+                cmd.Parameters.AddWithValue("@FirstName", student1.FirstName);
+                cmd.Parameters.AddWithValue("@YearLevel", student1.YearLevel);
+                cmd.Parameters.AddWithValue("@HomeRoom", student1.HomeRoom);
+                cmd.Parameters.AddWithValue("@UserName", student1.UserName);
+                cmd.Parameters.AddWithValue("@Password", student1.Password);
+                    
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
