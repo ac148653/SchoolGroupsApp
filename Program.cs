@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks.Dataflow;
 using System.Transactions;
 using Azure.Core;
+using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
 using SchoolGroupsApp.Model;
 using SchoolGroupsApp.Repositories;
 using SchoolGroupsApp.View;
@@ -16,11 +18,9 @@ namespace SchoolGroupsApp
         {
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolGroupsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
-            int loginChoice, r;
+            int loginChoice, r = 0;
             do
             {
-
-                
                 loginChoice = view.LoginMenu();
                 switch (loginChoice)
                 {
@@ -37,7 +37,7 @@ namespace SchoolGroupsApp
                             r = view.StudentLogin();
                             if (r == 1)
                                 StudentMenuChoice();
-                            if(r == 2) 
+                            if (r == 2)
                                 break;
 
                         }
@@ -46,7 +46,7 @@ namespace SchoolGroupsApp
                             r = view.StudentRegister();
                             if (r == 1)
                                 StudentMenuChoice();
-                            if(r == 2)
+                            if (r == 2)
                                 break;
                         }
                     case 4:
@@ -56,40 +56,44 @@ namespace SchoolGroupsApp
                 }
 
             } while (r == 2);
+        }
 
-            int studentsChoice;
-            do
+
+            private static void TeacherMenuChoice()
             {
-                int teacherChoice = view.TeacherMenu();
-                switch (teacherChoice)
+                int studentsChoice;
+                do
                 {
-                    case 1:
-                        studentsChoice = view.Students();
-                        if (studentsChoice == 1 || studentsChoice == 2 || studentsChoice == 3 || studentsChoice == 4)
+                    int teacherChoice = view.TeacherMenu();
+                    switch (teacherChoice)
+                    {
+                        case 1:
+                            studentsChoice = view.Students();
+                            if (studentsChoice == 1 || studentsChoice == 2 || studentsChoice == 3 || studentsChoice == 4)
                             StudentsChoice();
-                        if (studentsChoice == 5)
-                            break;
-                    case 2:
-                        
-                        break;
-                    case 3:
-                        
-                        break;
-                    case 4:
-                        
-                        break;
-                    case 5:
-                        
-                        break;
-                    case 6:
-                    case 7:
-                    case 8:
-                    default:
-                        Console.WriteLine("Invalid option. Please try again.");
-                        break;
-                }
-            } while (studentsChoice == 5);
+                            if (studentsChoice == 5)
+                                break;
+                        case 2:
 
+                            break;
+                        case 3:
+
+                            break;
+                        case 4:
+
+                            break;
+                        case 5:
+
+                            break;
+                        case 6:
+                        case 7:
+                        case 8:
+                        default:
+                            Console.WriteLine("Invalid option. Please try again.");
+                            break;
+                    }
+                } while (studentsChoice == 5);
+            }
             
             view = new ConsoleView();
             string choice = view.DisplayMenu();
@@ -129,8 +133,13 @@ namespace SchoolGroupsApp
             switch (studentsChoice)
             {
                 case 1:
-                    List<Students> students = storageManager.GetAllStudents();
-                    view.
+                    {
+                        List<Students> students = storageManager.GetAllStudents();
+                        view.DisplayStudents(students);
+                    }
+                    break;
+                case 2:
+
             }
         }
         private static void UpdateGroupName()
