@@ -74,12 +74,13 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int UpdateStudentInformation(int groupId, string groupName)
+        public int UpdateStudentName(int studentId, string lastName, string firstName)
         {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.groups SET groupName = @GroupName WHERE groupName = @GroupName", conn))
+            using (SqlCommand cmd = new SqlCommand($"UPDATE StudentInvolvement.students SET lastName = @LastName, firstName = @FirstName WHERE lastName = @LastName AND firstName = @FirstName", conn))
             {
-                cmd.Parameters.AddWithValue("@GroupName", groupName);
-                cmd.Parameters.AddWithValue("@GroupID", groupId);
+                cmd.Parameters.AddWithValue("@LastName", lastName);
+                cmd.Parameters.AddWithValue("@FirstName", firstName);
+                cmd.Parameters.AddWithValue("@StudentID", studentId);
                 return cmd.ExecuteNonQuery();
             }
         }
