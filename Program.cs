@@ -70,16 +70,16 @@ namespace SchoolGroupsApp
                         if (studentsChoice == 5)
                             break;
                     case 2:
-                        UpdateGroupName();
+                        
                         break;
                     case 3:
-                        InsertNewGroup();
+                        
                         break;
                     case 4:
-                        DeleteGroupByName();
+                        
                         break;
                     case 5:
-                        exit = true;
+                        
                         break;
                     case 6:
                     case 7:
@@ -90,6 +90,7 @@ namespace SchoolGroupsApp
                 }
             } while (studentsChoice == 5);
 
+            
             view = new ConsoleView();
             string choice = view.DisplayMenu();
 
@@ -120,7 +121,18 @@ namespace SchoolGroupsApp
 
             storageManager.CloseConnection();
 
-        } 
+        }
+
+        private static void StudentsChoice()
+        {
+            int studentsChoice = view.Students();
+            switch (studentsChoice)
+            {
+                case 1:
+                    List<Students> students = storageManager.GetAllStudents();
+                    view.
+            }
+        }
         private static void UpdateGroupName()
         {
             view.DisplayMessage("Enter the groupId to update: ");
