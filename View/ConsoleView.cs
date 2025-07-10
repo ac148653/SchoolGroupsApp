@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using SchoolGroupsApp.Model;
+using SchoolGroupsApp.Repositories;
 
 namespace SchoolGroupsApp.View   
 {
@@ -29,12 +30,13 @@ namespace SchoolGroupsApp.View
                     Console.WriteLine("Invalid input. Please enter your choice again.");
             } while ((choice < 1) || (choice > 4));
             return choice;
-        }
+        }   
 
-        public string TeacherLogin()
+        public int TeacherLogin()
         {
             string userName;
             string password;
+            Console.Clear();
             Console.WriteLine("Welcome to Teacher Login ");
             do
             {
@@ -47,9 +49,10 @@ namespace SchoolGroupsApp.View
                 if (userName.Equals ("r"))
                         LoginMenu();
                 if ((userName.Length > 10))
-                    Console.WriteLine("Invalid input. Please enter your username again. It must be less than 10 characters.");
+                    Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
             } while ((userName.Length > 10));
-            return userName;
+            string teacherList = GetAllTeachers();
+            
         }
 
         public int TeacherMenu()
