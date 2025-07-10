@@ -153,7 +153,7 @@ namespace SchoolGroupsApp
             int studentId = view.GetIntInput();
             view.DisplayMessage("Enter the new homeroom: ");
             string homeRoom = view.GetInput();
-            int rowsAffected = storageManager.UpdateStudentYear(studentId, homeRoom);
+            int rowsAffected = storageManager.UpdateStudentHomeroom(studentId, homeRoom);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
         private static void UpdateGroupName()
