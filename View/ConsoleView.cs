@@ -43,7 +43,10 @@ namespace SchoolGroupsApp.View
             foreach (Teachers teacher in teachers)
             {
                 if (userName.Equals(teacher.UserName) && password.Equals(teacher.Password))
+                {
+                    Console.WriteLine("Login successful!");
                     return 1;
+                }
             }
             Console.WriteLine("Your username or password is incorrect. Please enter them again.");
             return 0;
@@ -76,7 +79,50 @@ namespace SchoolGroupsApp.View
             return r;
            
         }
-        
+
+        public int CheckStudentLogin(string userName, string password)
+        {
+            List<Students> students = storageManager.GetAllStudents();
+
+            foreach (Students student in students)
+            {
+                if (userName.Equals(student.UserName) && password.Equals(student.Password))
+                {
+                    Console.WriteLine("Login successful!");
+                    return 1;
+                }
+            }
+            Console.WriteLine("Your username or password is incorrect. Please enter them again.");
+            return 0;
+        }
+        public int StudentLogin()
+        {
+            string userName;
+            string password;
+            Console.Clear();
+            Console.WriteLine("Welcome to Student Login ");
+            do
+            {
+                Console.WriteLine("LOGIN HERE:");
+                Console.WriteLine("Please enter your username: ");
+                userName = Console.ReadLine();
+                Console.WriteLine("Please enter your password: ");
+                password = Console.ReadLine();
+                Console.WriteLine("Press 2 to Return to Main Menu");
+                int x = int.Parse(Console.ReadLine());
+                if (x == 2)
+                    return x;
+                if (userName.Length > 10)
+                    Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
+                if (password.Length > 10)
+                    Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters.");
+            } while ((userName.Length > 10) || (password.Length > 10));
+            int r = CheckStudentLogin(userName, password);
+            if (r == 0)
+                StudentLogin();
+            return r;
+        }
+
 
         public int TeacherMenu()
         {
