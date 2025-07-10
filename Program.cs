@@ -16,31 +16,37 @@ namespace SchoolGroupsApp
         {
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolGroupsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
-
-            int loginChoice = view.LoginMenu();
-            switch (loginChoice)
+            int loginChoice, r;
+            do
             {
-                case 1:
-                    {
-                       int r = view.TeacherLogin();
-                        if (r == 1)
-                            TeacherMenuChoice();
-                    }
-                case 2:
-                    {
 
-                    }
-                case 3:
-                    {
+                
+                loginChoice = view.LoginMenu();
+                switch (loginChoice)
+                {
+                    case 1:
+                        {
+                            r = view.TeacherLogin();
+                            if (r == 1)
+                                TeacherMenuChoice();
+                            else
+                                break;
+                        }
+                    case 2:
+                        {
 
-                    }
-                case 4:
-                    {
-                        return;
-                    }
-            }
+                        }
+                    case 3:
+                        {
 
-    
+                        }
+                    case 4:
+                        {
+                            return;
+                        }
+                }
+
+            } while (r == 2);
             view = new ConsoleView();
             string choice = view.DisplayMenu();
 
