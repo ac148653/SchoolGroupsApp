@@ -68,11 +68,11 @@ namespace SchoolGroupsApp.View
                 int x = int.Parse(Console.ReadLine());
                 if (x == 2)
                     return x;
-                if (userName.Length > 10)
-                    Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
-                if (password.Length > 10)
-                    Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters.");
-            } while ((userName.Length > 10) || (password.Length > 10));
+                if (userName.Length > 10 || userName.Length < 5)
+                    Console.WriteLine("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
+                if (password.Length > 10 || password.Length < 5)
+                    Console.WriteLine("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
+            } while ((userName.Length > 10) || (userName.Length < 5) || (password.Length > 10) || (password.Length < 5));
            int r  = CheckTeacherLogin(userName, password);
             if (r == 0)
                 TeacherLogin();
@@ -112,11 +112,11 @@ namespace SchoolGroupsApp.View
                 int x = int.Parse(Console.ReadLine());
                 if (x == 2)
                     return x;
-                if (userName.Length > 10)
-                    Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
-                if (password.Length > 10)
-                    Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters.");
-            } while ((userName.Length > 10) || (password.Length > 10));
+                if (userName.Length > 10 || userName.Length < 5)
+                    Console.WriteLine("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
+                if (password.Length > 10 || password.Length < 5)
+                    Console.WriteLine("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
+            } while ((userName.Length > 10) || (userName.Length < 5) || (password.Length > 10) || (password.Length < 5));
             int r = CheckStudentLogin(userName, password);
             if (r == 0)
                 StudentLogin();
