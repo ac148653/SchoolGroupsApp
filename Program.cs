@@ -196,6 +196,7 @@ namespace SchoolGroupsApp
             view.DisplayMessage("Enter the last name of the student to remove: ");
             string lastName = view.GetInput();
             view.DisplayMessage("Enter the first name of the student to remove: ");
+            string firstName = view.GetInput();
             int rowsAffected = storageManager.DeleteStudentByName(lastName, firstName);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
