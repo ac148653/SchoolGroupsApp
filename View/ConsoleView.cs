@@ -291,6 +291,14 @@ namespace SchoolGroupsApp.View
             }
         }
 
+        public void DisplayTeachers(List<Teachers> teachers)
+        {
+            foreach (Teachers teacher in teachers)
+            {
+                Console.WriteLine($"{teacher.TeacherID}, {teacher.LastName}, {teacher.FirstName}");
+            }
+        }
+
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
