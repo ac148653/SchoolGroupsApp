@@ -63,6 +63,7 @@ namespace SchoolGroupsApp
         private static void TeacherMenuChoice()
         {
             int studentsChoice;
+            int groupsChoice;
             do
             {
                 int teacherChoice = view.TeacherMenu();
@@ -78,7 +79,13 @@ namespace SchoolGroupsApp
                         }
                         break;
                     case 2:
-
+                        {
+                            groupsChoice = view.Groups();
+                            if (groupsChoice >= 1 && groupsChoice <= 4)
+                                GroupsChoice(groupsChoice);
+                            if (groupsChoice == 5)
+                                break;
+                        }
                         break;
                     case 3:
 
@@ -96,7 +103,7 @@ namespace SchoolGroupsApp
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
                 }
-            } while (studentsChoice == 5);
+            } while (studentsChoice == 7 || groupsChoice == 5);
         }
       
         
