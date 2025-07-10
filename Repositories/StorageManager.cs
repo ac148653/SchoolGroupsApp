@@ -160,6 +160,19 @@ namespace SchoolGroupsApp.Repositories
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public int DeleteTeacherByName(string lastName, string firstName)
+        {
+            using SqlCommand cmd = new SqlCommand("DELETE FROM Staff.teachers WHERE lastName " +
+                "= @LastName AND firstName = @FirstName", conn);
+            {
+                cmd.Parameters.AddWithValue("@LastName", lastName);
+                cmd.Parameters.AddWithValue("@FirstName", firstName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+
         public List<Badges> GetAllBadges()
         {
             List<Badges> badges = new List<Badges>();
