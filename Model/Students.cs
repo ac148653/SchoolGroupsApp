@@ -9,11 +9,11 @@ namespace SchoolGroupsApp.Model
 {
     public class Students
     {
-        private int StudentID { get; set; }
-        private string LastName { get; set; }
-        private string FirstName { get; set; }
-        private int YearLevel { get; set; }
-        private string HomeRoom { get; set; }
+        public int StudentID { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public int YearLevel { get; set; }
+        public string HomeRoom { get; set; }
 
         public Students(int studentID, string lastName, string firstName, int yearLevel, string homeRoom)
         {
