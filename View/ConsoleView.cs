@@ -148,9 +148,14 @@ namespace SchoolGroupsApp.View
             userName = Console.ReadLine();
             Console.WriteLine("Please enter a password: ");
             password = Console.ReadLine();
-            Console.WriteLine("Press 2 to return to Main Menu");
+            Console.WriteLine("Registration successful");
+            int studentID = 0;
+            Students student1 = new Students(studentID, lastName, firstName, yearLevel, homeRoom, userName, password);
+            int generateId = storageManager.AddStudent(student1);
+            Console.WriteLine($"New student inserted with ID: {generateId}");
             return 1;
         }
+
 
         public int TeacherMenu()
         {
