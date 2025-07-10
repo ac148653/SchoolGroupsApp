@@ -167,15 +167,6 @@ namespace SchoolGroupsApp
             int rowsAffected = storageManager.UpdateStudentHomeroom(studentId, homeRoom);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
-        private static void UpdateGroupName()
-        {
-            view.DisplayMessage("Enter the groupId to update: ");
-            int groupId = view.GetIntInput();
-            view.DisplayMessage("Enter the new group name: ");
-            string groupName = view.GetInput();
-            int rowsAffected = storageManager.UpdateGroupName(groupId, groupName);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
-        }
 
         private static void AddStudent()
         {
@@ -225,13 +216,17 @@ namespace SchoolGroupsApp
                     break;
             }
         }
-        /*private static void InsertNewGroup()
+
+        private static void UpdateGroupName()
         {
+            view.DisplayMessage("Enter the groupId to update: ");
+            int groupId = view.GetIntInput();
             view.DisplayMessage("Enter the new group name: ");
             string groupName = view.GetInput();
-            int generateId = storageManager.InsertGroup(groupName);
-            view.DisplayMessage($"New group inserted with ID: {generateId}");
-        }*/
+            int rowsAffected = storageManager.UpdateGroupName(groupId, groupName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void InsertNewGroup()
         {
             view.DisplayMessage("Enter the new group name: ");
@@ -250,8 +245,28 @@ namespace SchoolGroupsApp
             int rowsAffected = storageManager.DeleteGroupByName(groupName);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
-    }
-      private static void GroupsChoice()
+
+        private static void TeachersChoice(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    List<Teachers> teachers = storageManager.GetAllTeachers();
+                    view.DisplayTeachers(teachers);
+                    break;
+                case 2:
+                    UpdateTeacherName();
+                    break;
+                case 3:
+                    AddTeacher();
+                    break;
+                case 4:
+                    DeleteTeacherByName();
+                    break;
+            }
+        }
+
+        private static void GroupsChoice()
         {
             view = new ConsoleView();
             string choice = view.DisplayMenu();
@@ -283,4 +298,10 @@ namespace SchoolGroupsApp
         }
 storageManager.CloseConnection();
 }
-} 
+} /*private static void InsertNewGroup()
+        {
+            view.DisplayMessage("Enter the new group name: ");
+            string groupName = view.GetInput();
+            int generateId = storageManager.InsertGroup(groupName);
+            view.DisplayMessage($"New group inserted with ID: {generateId}");
+        }*/
