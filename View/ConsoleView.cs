@@ -57,11 +57,11 @@ namespace SchoolGroupsApp.View
                 if (password.Length > 10)
                     Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters");
             } while ((userName.Length > 10) && (password.Length > 10));
-           int r  = CheckTeacherLogin(string userName, string password);
+           int r  = CheckTeacherLogin(userName, password);
             return r;
            
         }
-        public void CheckTeacherLogin(string userName, string password)
+        public int CheckTeacherLogin(string userName, string password)
         {
             List<Teachers> teachers = storageManager.GetAllTeachers();
             
