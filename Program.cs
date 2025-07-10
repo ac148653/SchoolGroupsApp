@@ -121,6 +121,9 @@ namespace SchoolGroupsApp
                     UpdateStudentYear();
                     break;
                 case 4:
+                    UpdateStudentHomeroom();
+                    break;
+                case 5:
 
             }
         }
@@ -164,6 +167,26 @@ namespace SchoolGroupsApp
             string groupName = view.GetInput();
             int rowsAffected = storageManager.UpdateGroupName(groupId, groupName);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void AddStudent()
+        {
+            view.DisplayMessage("Enter the new student's first name: ");
+            string firstName = view.GetInput();
+            view.DisplayMessage("Enter the student's last name: ");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the student's year level: ");
+            int yearLevel = view.GetIntInput();
+            view.DisplayMessage("Enter the student's homeroom: ");
+            string homeRoom = view.GetInput();
+            view.DisplayMessage("Enter a username for the student: ");
+            string userName = view.GetInput();
+            view.DisplayMessage("Enter a password for the student: ");
+            string password = view.GetInput();
+            int studentID = 0;
+            Students student1 = new Students(studentID, lastName, firstName, yearLevel, homeRoom, userName, password);
+            int generateId = storageManager.AddStudent(student1);
+            Console.WriteLine($"New student inserted with ID: {generateId}");
         }
         /*private static void InsertNewGroup()
         {
