@@ -218,6 +218,7 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("2. Update a student's name by studentID");
             Console.WriteLine("3. Add a new student");
             Console.WriteLine("4. Delete a student by student name");
+            Console.WriteLine("5. Exit");
             Console.Write("Select an option: ");
             studentChoice = int.Parse(Console.ReadLine());  
             return studentChoice;
@@ -259,6 +260,14 @@ namespace SchoolGroupsApp.View
             foreach (Groups group in groups)
             {
                 Console.WriteLine($"{group.GroupID}, {group.GroupName}");
+            }
+        }
+
+        public void DisplayStudents(List<Students> students)
+        {
+            foreach (Students student in students)
+            {
+                Console.WriteLine($"{student.StudentID}, {student.LastName}, {student.FirstName}, {student.YearLevel}, {student.HomeRoom}");
             }
         }
 
