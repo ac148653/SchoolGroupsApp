@@ -61,13 +61,14 @@ namespace SchoolGroupsApp.View
                 userName = Console.ReadLine();
                 Console.WriteLine("Please enter your password: ");
                 password = Console.ReadLine();
-                Console.WriteLine("Press r to Return to main menu");
-                if (userName.Equals ("r"))
-                        LoginMenu();
+                Console.WriteLine("Press 2 to Return to Main Menu");
+                int x = int.Parse(Console.ReadLine());
+                if (x == 2)
+                    return x;
                 if (userName.Length > 10)
                     Console.WriteLine("Invalid input. Please enter your username again. It must be up to 10 characters.");
                 if (password.Length > 10)
-                    Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters");
+                    Console.WriteLine("Invalid input. Please enter your password again. It must be up to 10 characters.");
             } while ((userName.Length > 10) || (password.Length > 10));
            int r  = CheckTeacherLogin(userName, password);
             if (r == 0)
