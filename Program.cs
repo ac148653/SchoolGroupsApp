@@ -293,6 +293,17 @@ namespace SchoolGroupsApp
             int generateId = storageManager.AddTeacher(teacher1);
             Console.WriteLine($"New teacher inserted with ID: {generateId}");
         }
+
+        private static void DeleteTeacherByName()
+        {
+            view.DisplayMessage("Enter the last name of the teacher to remove: ");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the first name of the teacher to remove: ");
+            string firstName = view.GetInput();
+            int rowsAffected = storageManager.DeleteTeacherByName(lastName, firstName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
