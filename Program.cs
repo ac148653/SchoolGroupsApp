@@ -57,6 +57,39 @@ namespace SchoolGroupsApp
 
             } while (r == 2);
 
+            int studentsChoice;
+            do
+            {
+                int teacherChoice = view.TeacherMenu();
+                switch (teacherChoice)
+                {
+                    case 1:
+                        studentsChoice = view.Students();
+                        if (studentsChoice == 1 || studentsChoice == 2 || studentsChoice == 3 || studentsChoice == 4)
+                            StudentsChoice();
+                        if (studentsChoice == 5)
+                            break;
+                    case 2:
+                        UpdateGroupName();
+                        break;
+                    case 3:
+                        InsertNewGroup();
+                        break;
+                    case 4:
+                        DeleteGroupByName();
+                        break;
+                    case 5:
+                        exit = true;
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            } while (studentsChoice == 5);
+
             view = new ConsoleView();
             string choice = view.DisplayMenu();
 
