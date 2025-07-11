@@ -195,7 +195,7 @@ namespace SchoolGroupsApp.Repositories
 
         public int UpdateBadgeName(int badgeId, string badgeName)
         {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.badges SET badgeName = @BadgeName WHERE badgeName = @BadgeName", conn))
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.Badges SET badgeName = @BadgeName WHERE badgeName = @BadgeName", conn))
             {
                 cmd.Parameters.AddWithValue("@BadgeName", badgeName);
                 cmd.Parameters.AddWithValue("@BadgeID", badgeId);
@@ -205,11 +205,23 @@ namespace SchoolGroupsApp.Repositories
 
         public int UpdateBadgeLevel(int badgeId, int badgeLevel)
         {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.badges SET badgeLevel = @BadgeLevel WHERE badgeLevel = @BadgeLevel", conn))
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.Badges SET badgeLevel = @BadgeLevel WHERE badgeLevel = @BadgeLevel", conn))
             {
                 cmd.Parameters.AddWithValue("@BadgeLevel", badgeLevel);
                 cmd.Parameters.AddWithValue("@BadgeID", badgeId);
                 return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int AddBadge(Badges badge1)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO GroupManagement.Badges (badgeName, badgeLevel) " +
+                "VALUES (@BadgeName, BadgeLevel); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@BadgeName", badge1.BadgeName);
+                cmd.Parameters.AddWithValue("@BadgeLevel", badge1.BadgeLevel);
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
