@@ -649,6 +649,10 @@ namespace SchoolGroupsApp
                     List<(string groupName, int numberOfStudents)> mostPopularGroups = storageManager.MostPopularGroups();
                     view.DisplayMostPopularGroups(mostPopularGroups);
                     break;
+                case 13:
+                    List<(string groupName, int numberOfTeachers)> teachersInCharge = storageManager.TeachersInCharge();
+                    view.DisplayTeachersInCharge(teachersInCharge);
+                    break;
 
 
             }
