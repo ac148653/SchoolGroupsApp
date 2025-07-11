@@ -372,6 +372,15 @@ namespace SchoolGroupsApp.View
             }
         }
 
+        public void DisplayPointsstudent(List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> points)
+        {
+            foreach ((string lastName, string firstName, int yearLevel, int totalPoints, string groupName) point in points)
+            {
+                Console.WriteLine($"{point.lastName}, {point.firstName}, {point.yearLevel}, {point.totalPoints}, {point.groupName}");
+            }
+        }
+
+
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
