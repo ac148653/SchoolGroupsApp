@@ -681,12 +681,32 @@ namespace SchoolGroupsApp.Repositories
                     while (reader.Read())
                     {
                         string groupName = reader["groupName"].ToString();
-                        int numberOfStudents = Convert.ToInt32(reader["numberOfStudents"]);
+                        int numberOfStudents = Convert.ToInt32(reader["NumberOfStudents"]);
                         mostPopularGroups.Add(new(groupName, numberOfStudents));
                     }
                 }
             }
             return mostPopularGroups;
+        }
+
+        public List<(string groupName, int NumberOfTeachers)> TeachersInCharge()
+        {
+            List<(string groupName, int numberOfTeachers)> teachersInCharge = new List<(string groupName, int numberOfTeachers)>();
+            using SqlCommand cmd = new SqlCommand("SELECT G.groupName, Count (T.teacherID) AS NumberOfTeachers " +
+                "FROM Staff.teacherGroups TG, Staff.teachers T, GroupManagement.groups G " +
+                "WHERE T.teacherID=TG.teacherID AND G.groupID=TG.groupID nGROUP BY G.groupName; ", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string groupName = reader["groupName"].ToString();
+                        int numberOfTeachers = Convert.ToInt32(reader["NumberOfTeachers"]);
+                        teachersInCharge.Add(new(groupName, numberOfTeachers));
+                    }
+                }
+            }
+            return teachersInCharge;
         }
 
         public void CloseConnection()
