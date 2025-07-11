@@ -449,6 +449,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{teacherInCharge.groupName}, {teacherInCharge.numberOfTeachers}");
             }
         }
+
+        public void DisplayAveragePoints(List<(string groupName, int avgPoints)> averagePoints)
+        {
+            foreach ((string groupName, int avgPoints) averagePoint in averagePoints)
+            {
+                Console.WriteLine($"{averagePoint.groupName}, {averagePoint.avgPoints}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
