@@ -224,6 +224,17 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int UpdatePointValue(int taskId, int pointsValue)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.tasks SET pointsValue = @PointsValue WHERE pointsValue = @PointsValue", conn))
+            {
+                cmd.Parameters.AddWithValue("@PointsValue", pointsValue);
+                cmd.Parameters.AddWithValue("@TaskID", taskId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+
         public List<Groups> GetAllGroups()
         {
             List<Groups> groups = new List<Groups>();
