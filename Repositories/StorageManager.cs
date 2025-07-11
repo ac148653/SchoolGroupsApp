@@ -52,7 +52,9 @@ namespace SchoolGroupsApp.Repositories
                         string firstName = reader["firstName"].ToString();
                         int yearLevel = Convert.ToInt32(reader["yearLevel"]);
                         string homeRoom = reader["homeroom"].ToString();
-                        students.Add(new Students(studentId, lastName, firstName, yearLevel, homeRoom));
+                        string userName = reader["userName"].ToString();
+                        string password = reader["password"].ToString();
+                        students.Add(new Students(studentId, lastName, firstName, yearLevel, homeRoom, userName, password));
                     }
                 }
             }
