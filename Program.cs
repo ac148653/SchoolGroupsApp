@@ -550,7 +550,22 @@ namespace SchoolGroupsApp
             view.DisplayPointsStudent(points);
         }
 
-
+        private static void ReportsChoice(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    List<Groups> groups = storageManager.GetAllGroups();
+                    view.DisplayGroups(groups);
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+            }
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
