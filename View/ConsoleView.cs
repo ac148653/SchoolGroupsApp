@@ -289,6 +289,7 @@ namespace SchoolGroupsApp.View
             badgeChoice = int.Parse(Console.ReadLine());
             return badgeChoice;
         }
+
         public int StudentMenu()
         {
             int choice;
@@ -340,6 +341,15 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{task.TaskID}, {task.TaskName}, {task.PointsValue}");
             }
         }
+
+        public void DisplayBadges(List<Badges> badges)
+        {
+            foreach (Badges badge in badges)
+            {
+                Console.WriteLine($"{badge.BadgeID}, {badge.BadgeName}, {badge.BadgeLevel}");
+            }
+        }
+
 
         public void DisplayMessage(string message)
         {
