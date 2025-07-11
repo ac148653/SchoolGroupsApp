@@ -258,7 +258,7 @@ namespace SchoolGroupsApp.View
 
         public int Tasks()
         {
-            int teacherChoice;
+            int taskChoice;
             Console.WriteLine("Welcome to Tasks");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all Tasks");
@@ -269,8 +269,25 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("6. Assign a task to a student");
             Console.WriteLine("7. Exit");
             Console.Write("Select an option: ");
-            teacherChoice = int.Parse(Console.ReadLine());
-            return teacherChoice;
+            taskChoice = int.Parse(Console.ReadLine());
+            return taskChoice;
+        }
+
+        public int Badges()
+        {
+            int badgeChoice;
+            Console.WriteLine("Welcome to Badges");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all Badges");
+            Console.WriteLine("2. Update a badge name");
+            Console.WriteLine("3. Update a badge level");
+            Console.WriteLine("4. Add a new badge");
+            Console.WriteLine("5. Delete a badge");
+            Console.WriteLine("6. Award a badge to a student");
+            Console.WriteLine("7. Exit");
+            Console.Write("Select an option: ");
+            badgeChoice = int.Parse(Console.ReadLine());
+            return badgeChoice;
         }
         public int StudentMenu()
         {
