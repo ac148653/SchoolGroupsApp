@@ -478,6 +478,26 @@ namespace SchoolGroupsApp.Repositories
             return points;
         }
 
+        public List<Students> SeniorStudentsList()
+        {
+            List<Students> students = new List<Students>();
+            string sqlString = "SELECT lastName, firstName, yearLevel, homeroom FROM StudentInvolvement.students WHERE yearLevel = 13 ORDER BY yearLevel, homeroom, lastName, firstName";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int studentId = Convert.ToInt32(reader["studentID"]);
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        string homeRoom = reader["homeroom"].ToString();
+                    }
+                }
+            }
+            return students;
+        }
 
         public void CloseConnection()
         {
