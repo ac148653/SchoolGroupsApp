@@ -729,6 +729,27 @@ namespace SchoolGroupsApp.Repositories
             return averagePoints;
         }
 
+        public List<(string firstName, string lastName, int totalPoints)> LeaderPoints()
+        {
+            List<(string firstName, string lastName, int totalPoints)> leaderPoints = new List<(string firstName, string lastName, int totalPoints)>();
+            using SqlCommand cmd = new SqlCommand("SELECT S.firstName, S.lastName, SUM(TP.points) AS totalPoints FROM " +
+                "StudentInvolvement.students S, StudentInvolvement.studentGroups SG, StudentInvolvement.studentTaskPoints TP " +
+                "WHERE S.studentID = SG.studentID AND SG.studentGroupID = TP.studentGroupID AND SG.leader = 1 GROUP BY S.firstName, " +
+                "S.lastName ORDER BY totalPoints DESC", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string firstName = reader["firstName"].ToString();
+                        string lastName = reader["lastName"].ToString();
+                        int totalPoints = Convert.ToInt32(reader["totalPoints"]);
+                        leaderPoints.Add(new(firstName, lastName, totalPoints));
+                    }
+                }
+            }
+            return leaderPoints;
+        }
 
 
         public void CloseConnection()
