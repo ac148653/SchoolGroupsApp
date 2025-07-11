@@ -425,6 +425,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{taskGroup.taskName}, {taskGroup.pointsValue}, {taskGroup.groupName}");
             }
         }
+
+        public void DisplayStudentsInMusic(List<(string groupName, int totalStudents)> studentsInMusic)
+        {
+            foreach ((string groupName, int totalStudents) studentInMusic in studentsInMusic)
+            {
+                Console.WriteLine($"{studentInMusic.groupName}, {studentInMusic.totalStudents}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
