@@ -633,6 +633,10 @@ namespace SchoolGroupsApp
                     List<(string lastName, string firstName, string badgeLevel, string badgeName)> seniorBadges = storageManager.SeniorBadges();
                     view.DisplaySeniorBadges(seniorBadges);
                     break;
+                case 9:
+                    List<(string lastName, string firstName)> teachersInChargeDebating = storageManager.TeachersInChargeDebating();
+                    view.DisplayTeachersInChargeDebating(teachersInChargeDebating);
+                    break;
 
 
             }
