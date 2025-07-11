@@ -304,6 +304,32 @@ namespace SchoolGroupsApp.View
             return pointsChoice;
         }
 
+        public int Reports()
+        {
+            int reportChoice;
+            Console.WriteLine("Welcome to Reports");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View group list");
+            Console.WriteLine("2. View senior student list");
+            Console.WriteLine("3. View gold badges");
+            Console.WriteLine("4. View students of homeroom 12GRG");
+            Console.WriteLine("5. View teacher list");
+            Console.WriteLine("6. View all student leaders");
+            Console.WriteLine("7. View all students whose first name starts with A");
+            Console.WriteLine("8. View senior students who at least have 1 badge");
+            Console.WriteLine("9. View the teachers in charge of the debating group");
+            Console.WriteLine("10. View all tasks which have a points value of greater than or equal to 5");
+            Console.WriteLine("11. View number of students in music groups");
+            Console.WriteLine("12. View the most popular groups");
+            Console.WriteLine("13. View number of teachers that oversee each group");
+            Console.WriteLine("14. View average points earned by students in each group");
+            Console.WriteLine("15. View the points earned by student leaders");
+            Console.WriteLine("16. Exit");
+            Console.Write("Select an option: ");
+            reportChoice = int.Parse(Console.ReadLine());
+            return reportChoice;
+        }
+
         public int StudentMenu()
         {
             int choice;
@@ -372,7 +398,7 @@ namespace SchoolGroupsApp.View
             }
         }
 
-        public void DisplayPointsstudent(List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> points)
+        public void DisplayPointsStudent(List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> points)
         {
             foreach ((string lastName, string firstName, int yearLevel, int totalPoints, string groupName) point in points)
             {
