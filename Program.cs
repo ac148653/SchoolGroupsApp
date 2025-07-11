@@ -311,6 +311,27 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void TasksChoice(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    List<Tasks> tasks = storageManager.GetAllTasks();
+                    view.DisplayTasks(tasks);
+                    break;
+                case 2:
+                    UpdateTaskName();
+                    break;
+                case 3:
+                    UpdateTaskValue();
+                    break;
+                case 4:
+                    AddTask();
+                    break;
+                case 5:
+                    DeleteTaskByName();
+            }
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
