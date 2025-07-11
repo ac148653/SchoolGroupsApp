@@ -462,6 +462,15 @@ namespace SchoolGroupsApp
             int generateId = storageManager.AddBadge(badge1);
             Console.WriteLine($"New badge inserted with ID: {generateId}");
         }
+
+        private static void DeleteBadgeByName()
+        {
+            view.DisplayMessage("Enter the badge name of the badge to remove: ");
+            string badgeName = view.GetInput();
+            int rowsAffected = storageManager.DeleteBadgeByName(badgeName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
