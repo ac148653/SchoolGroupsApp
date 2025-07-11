@@ -245,7 +245,7 @@ namespace SchoolGroupsApp.Repositories
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
-        }
+        } 
 
         public List<Groups> GetAllGroups()
         {
