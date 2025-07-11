@@ -657,7 +657,10 @@ namespace SchoolGroupsApp
                     List<(string groupName, int avgPoints)> averagePoints = storageManager.AveragePoints();
                     view.DisplayAveragePoints(averagePoints);
                     break;
-
+                case 15:
+                    List<(string firstName, string lastName, int totalPoints)> leaderPoints = storageManager.LeaderPoints();
+                    view.DisplayLeaderPoints(leaderPoints);
+                    break;
             }
         }
     }
