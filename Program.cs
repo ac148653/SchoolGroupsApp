@@ -430,6 +430,17 @@ namespace SchoolGroupsApp
                     break;
             }
         }
+
+        private static void UpdateBadgeName()
+        {
+            view.DisplayMessage("Enter the badge Id to update: ");
+            int badgeId = view.GetIntInput();
+            view.DisplayMessage("Enter the new badge name: ");
+            string badgeName = view.GetInput();
+            int rowsAffected = storageManager.UpdateBadgeName(badgeId, badgeName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
