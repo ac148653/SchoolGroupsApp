@@ -323,7 +323,7 @@ namespace SchoolGroupsApp
                     UpdateTaskName();
                     break;
                 case 3:
-                    UpdateTaskValue();
+                    UpdatePointsValue();
                     break;
                 case 4:
                     AddTask();
@@ -346,6 +346,17 @@ namespace SchoolGroupsApp
             int rowsAffected = storageManager.UpdateTaskName(taskId, taskName);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
+
+        private static void UpdatePointsValue()
+        {
+            view.DisplayMessage("Enter the task Id to update: ");
+            int taskId = view.GetIntInput();
+            view.DisplayMessage("Enter the new points value: ");
+            int pointsValue = view.GetIntInput();
+            int rowsAffected = storageManager.UpdatePointsValue(taskId, pointsValue);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
 
         private static void GroupsChoice()
         {
