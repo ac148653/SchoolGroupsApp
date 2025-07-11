@@ -225,6 +225,16 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int DeleteBadgeByName(string badgeName)
+        {
+            using SqlCommand cmd = new SqlCommand("DELETE FROM GroupManagement.Badges WHERE badgeName = @BadgeName", conn);
+            {
+                cmd.Parameters.AddWithValue("@LastName", badgeName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+
         public List<Tasks> GetAllTasks()
         {
             List<Tasks> tasks = new List<Tasks>();
