@@ -441,6 +441,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{mostPopularGroup.groupName}, {mostPopularGroup.numberOfStudents}");
             }
         }
+
+        public void DisplayTeachersInCharge(List<(string groupName, int numberOfTeachers)> teachersInCharge)
+        {
+            foreach ((string groupName, int numberOfTeachers) teacherInCharge in teachersInCharge)
+            {
+                Console.WriteLine($"{teacherInCharge.groupName}, {teacherInCharge.numberOfTeachers}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
