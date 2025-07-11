@@ -243,6 +243,17 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int InsertStudentBadges(int studentGroupID, int badgeID)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO StudentInvolvement.studentBadges (studentGroupID, badgeID) " +
+                "VALUES (@StudentGroupID, @BadgeID); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@StudentGroupID", studentGroupID);
+                cmd.Parameters.AddWithValue("@BadgeID", badgeID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
         public List<Tasks> GetAllTasks()
         {
             List<Tasks> tasks = new List<Tasks>();
