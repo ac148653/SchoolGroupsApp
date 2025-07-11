@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using SchoolGroupsApp.Model;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace SchoolGroupsApp.Repositories
 {
@@ -425,6 +426,29 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public List<(string lastName, string firstName, int yearLevel, int totalPoints)> GetAllPoints()
+        {
+            List<(string lastName, string firstName, int yearLevel, int totalPoints)> points = new List<(string lastName, string firstName, int yearLevel, int totalPoints)>();
+            string sqlString = "SELECT S.firstName, S.lastName, S.yearLevel, SUM(STP.Points) AS totalPoints FROM StudentInvolvement.students S, " +
+                "StudentInvolvement.studentGroups SG, StudentInvolvement.studentTaskPoints STP WHERE S.studentID = SG.studentID AND " +
+                "SG.studentGroupID = STP.studentGroupID GROUP BY S.studentID, S.firstName, S.lastName, S.yearLevel" +
+                "ORDER BY S.yearLevel, S.lastName, S.firstName, totalPoints DESC";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string firstName = reader["lastName"].ToString();
+                        string lastName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        int totalPoints = Convert.ToInt32(reader["totalPoints"]);
+                        points.Add(lastName, firstName, yearLevel, totalPoints);
+                    }
+                }
+            }
+            return points;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
