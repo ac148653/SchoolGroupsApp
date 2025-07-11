@@ -628,6 +628,27 @@ namespace SchoolGroupsApp.Repositories
             }
             return teachersInChargeDebating;
         }
+
+        public List<(string taskName, int pointsValue, string groupName)> TaskGroups()
+        {
+            List<(string taskName, int pointsValue, string groupName)> taskGroups = new List<(string taskName, int pointsValue, string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT T.taskName, T.pointsValue, G.groupName FROM GroupManagement.tasks T, " +
+                "GroupManagement.groups G WHERE G.groupID= T.groupID AND T.pointsValue>=5 ORDER BY T.pointsValue DESC;", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string taskName = reader["taskName"].ToString();
+                        int pointsValue = Convert.ToInt32(reader["pointsValue"]);
+                        string groupName = reader["groupName"].ToString();
+                        taskGroups.Add(new(taskName, pointsValue, groupName));
+                    }
+                }
+            }
+            return taskGroups;
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
