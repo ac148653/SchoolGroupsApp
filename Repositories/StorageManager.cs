@@ -120,7 +120,7 @@ namespace SchoolGroupsApp.Repositories
         public List<Teachers> GetAllTeachers()
         {
             List<Teachers> teachers = new List<Teachers>();
-            string sqlString = "SELECT * FROM Staff.teachers";
+            string sqlString = "SELECT * FROM Staff.teachers ORDER BY lastName, firstName";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -499,7 +499,7 @@ namespace SchoolGroupsApp.Repositories
             return students;
         }
 
-        public List<Badges> GoldBadges()
+        public List<> GoldBadges()
         {
             List<Badges> badges = new List<Badges>();
             using SqlCommand cmd = new SqlCommand("SELECT badgeName FROM GroupManagement.Badges WHERE badgeLevel = 'Gold'", conn);
@@ -539,6 +539,28 @@ namespace SchoolGroupsApp.Repositories
                 }
             }
             return students;
+        }
+
+        public List<(string lastName, string firstName, int yearlevel, string groupName)> StudentLeaders()
+        {
+            List<(string lastName, string firstName, int yearlevel, string groupName)> studentLeaders = new List<(string lastName, string firstName, int yearlevel, string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT S.lastName, S.firstName, S.yearLevel, G.groupName FROM StudentInvolvement.students S, " +
+                "GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE S.studentID = SG.studentID AND G.groupID = SG.groupID AND " +
+                "leader = 1 ORDER BY G.groupName, S.yearLevel DESC, S.lastName; ", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        string groupName = reader["groupName"].ToString();
+                        studentLeaders.Add(new (lastName, firstName, yearLevel, groupName));
+                    }
+                }
+            }
+            return studentLeaders;
         }
         public void CloseConnection()
         {
