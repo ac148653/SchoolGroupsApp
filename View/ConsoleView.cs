@@ -316,6 +316,14 @@ namespace SchoolGroupsApp.View
             }
         }
 
+        public void DisplayTasks(List<Tasks> tasks)
+        {
+            foreach (Tasks task in tasks)
+            {
+                Console.WriteLine($"{task.TaskID}, {task.TaskName}, {task.PointsValue}");
+            }
+        }
+
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
