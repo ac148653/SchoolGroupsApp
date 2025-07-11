@@ -475,6 +475,8 @@ namespace SchoolGroupsApp.Repositories
             }
             return points;
         }
+
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
