@@ -410,6 +410,13 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{seniorBadge.lastName}, {seniorBadge.firstName}, {seniorBadge.badgeLevel}, {seniorBadge.badgeName}");
             }
         }
+        public void DisplayTeachersInChargeDebating(List<(string lastName, string firstName)> teachersInChargeDebating)
+        {
+            foreach ((string lastName, string firstName) teacherInChargeDebating in teachersInChargeDebating)
+            {
+                Console.WriteLine($"{teacherInChargeDebating.lastName}, {teacherInChargeDebating.firstName}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
