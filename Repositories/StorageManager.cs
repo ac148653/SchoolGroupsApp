@@ -546,7 +546,7 @@ namespace SchoolGroupsApp.Repositories
             List<(string lastName, string firstName, int yearlevel, string groupName)> studentLeaders = new List<(string lastName, string firstName, int yearlevel, string groupName)>();
             using SqlCommand cmd = new SqlCommand("SELECT S.lastName, S.firstName, S.yearLevel, G.groupName FROM StudentInvolvement.students S, " +
                 "GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE S.studentID = SG.studentID AND G.groupID = SG.groupID AND " +
-                "leader = 1 ORDER BY G.groupName, S.yearLevel DESC, S.lastName; ", conn);
+                "leader = 1 ORDER BY G.groupName, S.yearLevel DESC, S.lastName", conn);
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -561,6 +561,28 @@ namespace SchoolGroupsApp.Repositories
                 }
             }
             return studentLeaders;
+        }
+
+        public List<(string lastName, string firstName, int yearlevel, string groupName)> StudentsWithA()
+        {
+            List<(string lastName, string firstName, int yearlevel, string groupName)> studentWithA = new List<(string lastName, string firstName, int yearlevel, string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT S.lastName, S.firstName, S.yearLevel, G.groupName FROM " +
+                "StudentInvolvement.students S, GroupManagement.groups G, StudentInvolvement.studentGroups SG " +
+                "WHERE S.studentID = SG.studentID AND G.groupID = SG.groupID AND S.firstName LIKE 'A%' ", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        string groupName = reader["groupName"].ToString();
+                        studentWithA.Add(new(lastName, firstName, yearLevel, groupName));
+                    }
+                }
+            }
+            return studentWithA;
         }
         public void CloseConnection()
         {
