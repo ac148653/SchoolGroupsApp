@@ -363,7 +363,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{badge.BadgeID}, {badge.BadgeName}, {badge.BadgeLevel}");
             }
         }
-         
+
+        public void DisplayPoints(List<(string lastName, string firstName, int yearLevel, int totalPoints)> points)
+        {
+            foreach ((string lastName, string firstName, int yearLevel, int totalPoints) point in points)
+            {
+                Console.WriteLine($"{point.lastName}, {point.firstName}, {point.yearLevel}, {point.totalPoints}");
+            }
+        }
 
         public void DisplayMessage(string message)
         {
