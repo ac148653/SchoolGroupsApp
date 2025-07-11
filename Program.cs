@@ -115,6 +115,7 @@ namespace SchoolGroupsApp
             int tasksChoice;
             int badgesChoice;
             int pointsChoice;
+            int reportsChoice;
             //do
             //{
                 int teacherMenuChoice = view.TeacherMenu();
@@ -175,6 +176,14 @@ namespace SchoolGroupsApp
                         }
                         break;
                     case 7:
+                        {
+                            reportsChoice = view.Reports();
+                            if (reportsChoice >= 1 && reportsChoice <= 16)
+                                ReportsChoice(reportsChoice);
+                            if(reportsChoice == 17)
+                            break;
+                        }
+                        break;
                     case 8:
                     default:
                         view.DisplayMessage("Invalid option. Please try again.");
