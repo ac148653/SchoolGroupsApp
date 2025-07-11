@@ -507,8 +507,7 @@ namespace SchoolGroupsApp
                     view.DisplayPoints(points);
                     break;
                 case 3:
-                    List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> pointsStudent = storageManager.GetAllPointsStudent();
-                    view.DisplayPointsStudent(pointsStudent);
+                    DisplayPointsStudent();                    
                     break;
             }
         }
@@ -539,6 +538,7 @@ namespace SchoolGroupsApp
             string firstName = view.GetInput();
             int studentID = storageManager.StudentID(lastName, firstName);
             List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> points = storageManager.GetAllPointsStudent(studentID);
+            view.DisplayPointsStudent(points);
         }
 
 
