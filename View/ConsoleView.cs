@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using Azure.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using SchoolGroupsApp.Model;
 using SchoolGroupsApp.Repositories;
@@ -17,8 +18,7 @@ namespace SchoolGroupsApp.View
 {
     public class ConsoleView
     {
-        private static StorageManager storageManager;
-
+        
         public int LoginMenu()
         {
             int choice;
@@ -38,51 +38,8 @@ namespace SchoolGroupsApp.View
             return choice;
         }
 
-        public int CheckTeacherLogin(string userName, string password)
-        {
-            List<Teachers> teachers = storageManager.GetAllTeachers();
 
-            foreach (Teachers teacher in teachers)
-            {
-                if (userName.Equals(teacher.UserName) && password.Equals(teacher.Password))
-                {
-                    Console.WriteLine("Login successful!");
-                    return 1;
-                }
-            }
-            Console.WriteLine("Your username or password is incorrect. Please enter them again.");
-            return 0;
-        }
-        public int TeacherLogin()
-        {
-            string userName;
-            string password;
-            Console.Clear();
-            Console.WriteLine("Welcome to Teacher Login ");
-            do
-            {
-                Console.WriteLine("LOGIN HERE:");
-                Console.WriteLine("Please enter your username: ");
-                userName = Console.ReadLine();
-                Console.WriteLine("Please enter your password: ");
-                password = Console.ReadLine();
-                Console.WriteLine("Press 2 to Return to Main Menu");
-                int x = int.Parse(Console.ReadLine());
-                if (x == 2)
-                    return x;
-                if (userName.Length > 10 || userName.Length < 5)
-                    Console.WriteLine("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
-                if (password.Length > 10 || password.Length < 5)
-                    Console.WriteLine("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
-            } while ((userName.Length > 10) || (userName.Length < 5) || (password.Length > 10) || (password.Length < 5));
-           int r  = CheckTeacherLogin(userName, password);
-            if (r == 0)
-                TeacherLogin();
-            return r;
-           
-        }
-
-        public int CheckStudentLogin(string userName, string password)
+        /*public int CheckStudentLogin(string userName, string password)
         {
             List<Students> students = storageManager.GetAllStudents();
 
@@ -123,7 +80,7 @@ namespace SchoolGroupsApp.View
             if (r == 0)
                 StudentLogin();
             return r;
-        }
+        }*/
 
         public int StudentRegister()
         {
@@ -181,8 +138,8 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("Registration successful");
             int studentID = 0;
             Students student1 = new Students(studentID, lastName, firstName, yearLevel, homeRoom, userName, password);
-            int generateId = storageManager.AddStudent(student1);
-            Console.WriteLine($"New student inserted with ID: {generateId}");
+            //int generateId = storageManager.AddStudent(student1);
+            //Console.WriteLine($"New student inserted with ID: {generateId}");
             return 1;
         }
 
@@ -411,6 +368,14 @@ namespace SchoolGroupsApp.View
             foreach (Students student in students)
             {
                 Console.WriteLine($"{student.StudentID}, {student.LastName}, {student.FirstName}, {student.YearLevel}, {student.HomeRoom}");
+            }
+        }
+
+        public void DisplayGoldBadges(List<Badges> badges)
+        {
+            foreach (Badges badge in badges)
+            {
+                Console.WriteLine($"{badge.BadgeName}");
             }
         }
 
