@@ -633,7 +633,7 @@ namespace SchoolGroupsApp.Repositories
         {
             List<(string taskName, int pointsValue, string groupName)> taskGroups = new List<(string taskName, int pointsValue, string groupName)>();
             using SqlCommand cmd = new SqlCommand("SELECT T.taskName, T.pointsValue, G.groupName FROM GroupManagement.tasks T, " +
-                "GroupManagement.groups G WHERE G.groupID= T.groupID AND T.pointsValue>=5 ORDER BY T.pointsValue DESC;", conn);
+                "GroupManagement.groups G WHERE G.groupID= T.groupID AND T.pointsValue>=5 ORDER BY T.pointsValue DESC", conn);
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -647,6 +647,26 @@ namespace SchoolGroupsApp.Repositories
                 }
             }
             return taskGroups;
+        }
+
+        public List<(string groupName, int totalStudents)> StudentsInMusic()
+        {
+            List<(string groupName, int totalStudents)> studentsInMusic = new List<(string groupName, int totalStudents)>();
+            using SqlCommand cmd = new SqlCommand("SELECT G.groupName, Count (S.studentID) AS totalStudents FROM " +
+                "StudentInvolvement.students S, GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE " +
+                "SG.GroupID = G.GroupID AND SG.StudentID = S.StudentID GROUP BY G.groupName HAVING G.groupName IN ('Choir', 'Orchestra')", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string groupName = reader["groupName"].ToString();
+                        int totalStudents = Convert.ToInt32(reader["totalStudents"]);
+                        studentsInMusic.Add(new(groupName, totalStudents));
+                    }
+                }
+            }
+            return studentsInMusic;
         }
 
         public void CloseConnection()
