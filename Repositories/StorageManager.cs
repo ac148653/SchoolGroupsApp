@@ -669,6 +669,26 @@ namespace SchoolGroupsApp.Repositories
             return studentsInMusic;
         }
 
+        public List<(string groupName, int NumberOfStudents)> MostPopularGroups()
+        {
+            List<(string groupName, int numberOfStudents)> mostPopularGroups = new List<(string groupName, int numberOfStudents)>();
+            using SqlCommand cmd = new SqlCommand("SELECT TOP 5 G.groupName, Count (S.studentID) AS NumberOfStudents FROM " +
+                "StudentInvolvement.students S, GroupManagement.groups G, StudentInvolvement.studentGroups SG  WHERE G.GroupID = SG.GroupID " +
+                "AND S.StudentID = SG.StudentID GROUP BY G.groupName ORDER BY NumberOfStudents DESC", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string groupName = reader["groupName"].ToString();
+                        int numberOfStudents = Convert.ToInt32(reader["numberOfStudents"]);
+                        mostPopularGroups.Add(new(groupName, numberOfStudents));
+                    }
+                }
+            }
+            return mostPopularGroups;
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
