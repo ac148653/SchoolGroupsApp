@@ -617,6 +617,11 @@ namespace SchoolGroupsApp
                     List<Students> students = storageManager.ParticularHomeroom();
                     view.DisplayParticularHomeroom(students);
                     break;
+                case 5:
+                    List<Teachers> teachers = storageManager.GetAllTeachers();
+                    view.DisplayTeachers(teachers);
+                    break;
+
 
             }
         }
