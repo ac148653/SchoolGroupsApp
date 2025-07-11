@@ -255,6 +255,22 @@ namespace SchoolGroupsApp.View
             teacherChoice = int.Parse(Console.ReadLine());
             return teacherChoice;
         }
+
+        public int Tasks()
+        {
+            int teacherChoice;
+            Console.WriteLine("Welcome to Tasks");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all Tasks");
+            Console.WriteLine("2. Update a task's name");
+            Console.WriteLine("3. Add a new task");
+            Console.WriteLine("4. Delete a task");
+            Console.WriteLine("5. Assign a task to a student");
+            Console.WriteLine("6. Exit");
+            Console.Write("Select an option: ");
+            teacherChoice = int.Parse(Console.ReadLine());
+            return teacherChoice;
+        }
         public int StudentMenu()
         {
             int choice;
