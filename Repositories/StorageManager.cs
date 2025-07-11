@@ -257,14 +257,13 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int StudentID(int studentID, string lastName, string firstName)
+        public int StudentID(string lastName, string firstName)
         {
             using SqlCommand cmd = new SqlCommand("SELECT studentID FROM StudentInvolvement.students WHERE lastName = @LastName AND" +
                 "firstName = @FirstName", conn);
             {
                 cmd.Parameters.AddWithValue("@LastName", lastName);
                 cmd.Parameters.AddWithValue("@FirstName", firstName);
-                cmd.Parameters.AddWithValue("@StudentID", studentID);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -278,29 +277,28 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int TaskID(int taskID, string taskName)
+        public int TaskID(string taskName, int points)
         {
-            using SqlCommand cmd = new SqlCommand("SELECT taskID FROM GroupManagement.tasks WHERE taskName = @TaskName", conn);
+            using SqlCommand cmd = new SqlCommand("SELECT taskID, points FROM GroupManagement.tasks WHERE taskName = @TaskName", conn);
             {
                 cmd.Parameters.AddWithValue("@TaskName", taskName);
-                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@Points", points);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
-        public int StudentGroupID(int studentGroupID, int studentID, int groupID)
+        public int StudentGroupID(int studentID, int groupID)
         {
             using SqlCommand cmd = new SqlCommand("SELECT studentGroupID FROM StudentInvolvement.studentGroups WHERE studentID = @StudentID" +
                 "AND groupID = @GroupID", conn);
             {
                 cmd.Parameters.AddWithValue("@StudentID", studentID);
                 cmd.Parameters.AddWithValue("@GroupID", groupID);
-                cmd.Parameters.AddWithValue("@StudentGroupID", studentGroupID);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
-        public int InsertStudentTaskPoints(int studentTaskPointsID, int studentGroupID, int taskID, int points)
+        public int InsertStudentTaskPoints(int studentGroupID, int taskID, int points)
         {
             using SqlCommand cmd = new SqlCommand("INSERT INTO StudentInvolvement.studentTaskPoints (studentGroupID, taskID, points) " +
                 "VALUES (@StudentGroupID, @TaskID, @Points); SELECT SCOPE_IDENTITY();", conn);

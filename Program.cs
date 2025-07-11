@@ -380,6 +380,22 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void AssignTask()
+        {
+            view.DisplayMessage("Enter the last name of the student you want to assign a task to:");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the first name of the student you want to assign a task to:");
+            string firstName = view.GetInput();
+            int studentID = storageManager.StudentID(lastName, firstName);
+            view.DisplayMessage("Enter the group you want to assign the task for: ");
+            string groupName = view.GetInput();
+            int groupID = storageManager.GroupID(groupName);
+            int studentGroupID = storageManager.StudentGroupID(studentID, groupID);
+            view.DisplayMessage("Enter the task you want to assign: ");
+            string taskName = view.GetInput();
+            int taskID = storageManager.TaskID(taskName);
+            int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, points);
+        }
 
         private static void GroupsChoice()
         {
