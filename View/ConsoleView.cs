@@ -387,6 +387,13 @@ namespace SchoolGroupsApp.View
             }
         }
 
+        public void DisplayStudentLeaders(List<(string lastName, string firstName, int yearLevel, string groupName)> studentLeaders)
+        {
+            foreach ((string lastName, string firstName, int yearLevel, string groupName) studentLeader in studentLeaders)
+            {
+                Console.WriteLine($"{studentLeader.lastName}, {studentLeader.firstName}, {studentLeader.yearLevel}, {studentLeader.groupName}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
