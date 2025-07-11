@@ -405,6 +405,31 @@ namespace SchoolGroupsApp
             int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, pointsValue);
         }
 
+        private static void BadgesChoice(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    List<Badges> badges = storageManager.GetAllBadges();
+                    view.DisplayBadges(badges);
+                    break;
+                case 2:
+                    UpdateBadgeName();
+                    break;
+                case 3:
+                    UpdateBadgeLevel();
+                    break;
+                case 4:
+                    AddBadge();
+                    break;
+                case 5:
+                    DeleteBadgeByName();
+                    break;
+                case 6:
+                    AwardBadge();
+                    break;
+            }
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
