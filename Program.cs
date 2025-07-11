@@ -372,6 +372,15 @@ namespace SchoolGroupsApp
             Console.WriteLine($"New task inserted with ID: {generateId}");
         }
 
+        private static void DeleteTaskByName()
+        {
+            view.DisplayMessage("Enter the task name of the task to remove: ");
+            string taskName = view.GetInput();
+            int rowsAffected = storageManager.DeleteTaskByName(taskName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
