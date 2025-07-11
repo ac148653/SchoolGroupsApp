@@ -502,18 +502,43 @@ namespace SchoolGroupsApp.Repositories
         public List<Badges> GoldBadges()
         {
             List<Badges> badges = new List<Badges>();
-            using SqlCommand cmd = new SqlCommand("SELECT badgeName FROM GroupManagement.Badges WHERE badgeLevel = ‘Gold’", conn);
+            using SqlCommand cmd = new SqlCommand("SELECT badgeName FROM GroupManagement.Badges WHERE badgeLevel = 'Gold'", conn);
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         string badgeName = reader["badgeName"].ToString();
-                        string badgeLevel = reader["badgeLevel"].ToString();
+                        Badges badge = new Badges();
+                        badge.BadgeName = badgeName;
+                        badges.Add(badge);
                     }
                 }
             }
             return badges;
+        }
+
+        public List<Students> ParticularHomeroom()
+        {
+            List<Students> students = new List<Students>();
+            using SqlCommand cmd = new SqlCommand("SELECT * FROM StudentInvolvement.students WHERE homeroom = '12GRG' ORDER BY lastName, firstName", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int studentID = Convert.ToInt32(reader["studentID"]);
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        string homeroom = reader["homeroom"].ToString();
+                        string userName = reader["userName"].ToString();
+                        string password = reader["password"].ToString();
+                        students.Add(new Students(studentID, lastName, firstName, yearLevel, homeroom, userName, password));
+                    }
+                }
+            }
+            return students;
         }
         public void CloseConnection()
         {
