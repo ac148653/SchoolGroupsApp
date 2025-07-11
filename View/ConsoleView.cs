@@ -402,6 +402,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{studentWithA.lastName}, {studentWithA.firstName}, {studentWithA.yearLevel}, {studentWithA.groupName}");
             }
         }
+
+        public void DisplaySeniorBadges(List<(string lastName, string firstName, string badgeLevel, string badgeName)> seniorBadges)
+        {
+            foreach ((string lastName, string firstName, string badgeLevel, string badgeName) seniorBadge in seniorBadges)
+            {
+                Console.WriteLine($"{seniorBadge.lastName}, {seniorBadge.firstName}, {seniorBadge.badgeLevel}, {seniorBadge.badgeName}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
