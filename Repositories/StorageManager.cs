@@ -245,7 +245,17 @@ namespace SchoolGroupsApp.Repositories
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
-        } 
+        }
+
+        public int DeleteTaskByName(string taskName)
+        {
+            using SqlCommand cmd = new SqlCommand("DELETE FROM GroupManagement.tasks WHERE taskName " +
+                "= @TaskName", conn);
+            {
+                cmd.Parameters.AddWithValue("@TaskName", taskName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
 
         public List<Groups> GetAllGroups()
         {
