@@ -417,6 +417,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{teacherInChargeDebating.lastName}, {teacherInChargeDebating.firstName}");
             }
         }
+
+        public void DisplayTaskGroups(List<(string taskName, int pointsValue, string groupName)> taskGroups)
+        {
+            foreach ((string taskName, int pointsValue, string groupName) taskGroup in taskGroups)
+            {
+                Console.WriteLine($"{taskGroup.taskName}, {taskGroup.pointsValue}, {taskGroup.groupName}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
