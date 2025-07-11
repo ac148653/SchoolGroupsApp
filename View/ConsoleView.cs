@@ -379,6 +379,14 @@ namespace SchoolGroupsApp.View
             }
         }
 
+        public void DisplayParticularHomeroom(List<Students> students)
+        {
+            foreach (Students student in students)
+            {
+                Console.WriteLine($"{student.StudentID}, {student.LastName}, {student.FirstName}, {student.YearLevel}, {student.HomeRoom}, {student.UserName}, {student.Password}");
+            }
+        }
+
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
