@@ -269,11 +269,11 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int GroupID(int groupID)
+        public int GroupID(string groupName)
         {
             using SqlCommand cmd = new SqlCommand("SELECT groupID FROM GroupManagement.groups WHERE groupName = @GroupName", conn);
             {
-                cmd.Parameters.AddWithValue("@GroupID", groupID);
+                cmd.Parameters.AddWithValue("@GroupName", groupName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
