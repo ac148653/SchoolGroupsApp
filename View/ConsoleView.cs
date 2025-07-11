@@ -433,6 +433,14 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{studentInMusic.groupName}, {studentInMusic.totalStudents}");
             }
         }
+
+        public void DisplayMostPopularGroups(List<(string groupName, int numberOfStudents)> mostPopularGroups)
+        {
+            foreach ((string groupName, int numberOfStudents) mostPopularGroup in mostPopularGroups)
+            {
+                Console.WriteLine($"{mostPopularGroup.groupName}, {mostPopularGroup.numberOfStudents}");
+            }
+        }
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
