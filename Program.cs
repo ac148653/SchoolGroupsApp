@@ -510,6 +510,24 @@ namespace SchoolGroupsApp
                     break;
             }
         }
+
+        private static void AddPoints()
+        {
+            view.DisplayMessage("Enter the last name of the student you want to give points:");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the first name of the student you want to give points:");
+            string firstName = view.GetInput();
+            int studentID = storageManager.StudentID(lastName, firstName);
+            view.DisplayMessage("Enter the name of the group you want to give points for:");
+            string groupName = view.GetInput();
+            int groupID = storageManager.GroupID(groupName);
+            int studentGroupID = storageManager.StudentGroupID(studentID, groupID);
+            view.DisplayMessage("Enter the name of the task you want to give points for: ");
+            string taskName = view.GetInput();
+            int taskID = storageManager.TaskID(taskName);
+            int pointsValue = storageManager.TaskPointsValue(taskID);
+            int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, pointsValue);
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
