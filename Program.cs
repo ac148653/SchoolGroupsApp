@@ -451,6 +451,17 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void AddBadge()
+        {
+            view.DisplayMessage("Enter the new badge's name: ");
+            string badgeName = view.GetInput();
+            view.DisplayMessage("Enter the new badge's level: ");
+            string badgeLevel = view.GetInput();
+            int badgeID = 0;
+            Badges badge1 = new Badges(badgeID, badgeName, badgeLevel);
+            int generateId = storageManager.AddBadge(badge1);
+            Console.WriteLine($"New badge inserted with ID: {generateId}");
+        }
         private static void GroupsChoice()
         {
             view = new ConsoleView();
