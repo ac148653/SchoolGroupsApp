@@ -499,6 +499,22 @@ namespace SchoolGroupsApp.Repositories
             return students;
         }
 
+        public List<Badges> GoldBadges()
+        {
+            List<Badges> badges = new List<Badges>();
+            using SqlCommand cmd = new SqlCommand("SELECT badgeName FROM GroupManagement.Badges WHERE badgeLevel = ‘Gold’", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string badgeName = reader["badgeName"].ToString();
+                        string badgeLevel = reader["badgeLevel"].ToString();
+                    }
+                }
+            }
+            return badges;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
