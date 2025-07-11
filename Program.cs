@@ -629,6 +629,10 @@ namespace SchoolGroupsApp
                     List<(string lastName, string firstName, int yearLevel, string groupName)> studentsWithA = storageManager.StudentsWithA();
                     view.DisplayStudentLeaders(studentsWithA);
                     break;
+                case 8:
+                    List<(string lastName, string firstName, string badgeLevel, string badgeName)> seniorBadges = storageManager.SeniorBadges();
+                    view.DisplaySeniorBadges(seniorBadges);
+                    break;
 
 
             }
