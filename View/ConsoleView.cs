@@ -406,6 +406,13 @@ namespace SchoolGroupsApp.View
             }
         }
 
+        public void DisplaySeniorStudents(List<Students> students)
+        {
+            foreach (Students student in students)
+            {
+                Console.WriteLine($"{student.StudentID}, {student.LastName}, {student.FirstName}, {student.YearLevel}, {student.HomeRoom}");
+            }
+        }
 
         public void DisplayMessage(string message)
         {

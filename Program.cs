@@ -94,7 +94,7 @@ namespace SchoolGroupsApp
                     case 3:
                         {
                             teacherChoice = view.Teachers();
-                            if(teacherChoice >= 1 && teacherChoice <= 4)
+                            if (teacherChoice >= 1 && teacherChoice <= 4)
                                 TeachersChoice(teacherChoice);
                             if (teacherChoice == 5)
                                 break;
@@ -105,16 +105,16 @@ namespace SchoolGroupsApp
                             tasksChoice = view.Tasks();
                             if (tasksChoice >= 1 && tasksChoice <= 6)
                                 TasksChoice(tasksChoice);
-                            if(tasksChoice == 7)
+                            if (tasksChoice == 7)
                                 break;
                         }
                         break;
                     case 5:
                         {
                             badgesChoice = view.Badges();
-                            if(badgesChoice >= 1 && badgesChoice <= 6)
+                            if (badgesChoice >= 1 && badgesChoice <= 6)
                                 BadgesChoice(badgesChoice);
-                            if(badgesChoice == 7)
+                            if (badgesChoice == 7)
                                 break;
                         }
                         break;
@@ -123,7 +123,7 @@ namespace SchoolGroupsApp
                             pointsChoice = view.Points();
                             if (pointsChoice >= 1 && pointsChoice <= 3)
                                 PointsChoice(pointsChoice);
-                            if(pointsChoice == 4)
+                            if (pointsChoice == 4)
                                 break;
                         }
                         break;
@@ -135,8 +135,8 @@ namespace SchoolGroupsApp
                 }
             } while (studentsChoice == 7 || groupsChoice == 5 || teacherChoice == 5 || tasksChoice == 7 || badgesChoice == 7 || pointsChoice == 4);
         }
-      
-        
+
+
 
         public static void StudentsChoice(int choice)
         {
@@ -265,7 +265,7 @@ namespace SchoolGroupsApp
             Groups group1 = new Groups(groupID, groupName);
             int generateId = storageManager.InsertGroup(group1);
             view.DisplayMessage($"New group inserted with ID: {generateId}");
-            
+
         }
 
         private static void DeleteGroupByName()
@@ -516,7 +516,7 @@ namespace SchoolGroupsApp
                     view.DisplayPoints(points);
                     break;
                 case 3:
-                    DisplayPointsStudent();                    
+                    DisplayPointsStudent();
                     break;
             }
         }
@@ -559,14 +559,17 @@ namespace SchoolGroupsApp
                     view.DisplayGroups(groups);
                     break;
                 case 2:
-                    
+                    List<Students> students = storageManager.SeniorStudentsList();
+                    view.DisplaySeniorStudents(students);
                     break;
                 case 3:
-                    
+
                     break;
             }
         }
-        private static void GroupsChoice()
+    }
+}
+        /*private static void GroupsChoice()
         {
             view = new ConsoleView();
             string choice = view.DisplayMenu();
@@ -590,7 +593,7 @@ namespace SchoolGroupsApp
                     break;
                 /*case "5":
                     exit = true;
-                    break;*/
+                    break;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
