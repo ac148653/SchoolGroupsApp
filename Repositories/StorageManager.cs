@@ -694,7 +694,7 @@ namespace SchoolGroupsApp.Repositories
             List<(string groupName, int numberOfTeachers)> teachersInCharge = new List<(string groupName, int numberOfTeachers)>();
             using SqlCommand cmd = new SqlCommand("SELECT G.groupName, Count (T.teacherID) AS NumberOfTeachers " +
                 "FROM Staff.teacherGroups TG, Staff.teachers T, GroupManagement.groups G " +
-                "WHERE T.teacherID=TG.teacherID AND G.groupID=TG.groupID nGROUP BY G.groupName; ", conn);
+                "WHERE T.teacherID=TG.teacherID AND G.groupID=TG.groupID nGROUP BY G.groupName", conn);
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -708,6 +708,28 @@ namespace SchoolGroupsApp.Repositories
             }
             return teachersInCharge;
         }
+
+        public List<(string groupName, int avgPoints)> AveragePoints()
+        {
+            List<(string groupName, int avgPoints)> averagePoints = new List<(string groupName, int avgPoints)>();
+            using SqlCommand cmd = new SqlCommand("SELECT G.groupName, AVG(TP.points) AS avgPoints FROM GroupManagement.groups G, " +
+                "StudentInvolvement.studentGroups SG, StudentInvolvement.studentTaskPoints TP WHERE G.groupID = SG.groupID " +
+                "AND SG.studentGroupID = TP.studentGroupID GROUP BY G.groupName ORDER BY avgPoints DESC", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string groupName = reader["groupName"].ToString();
+                        int avgPoints = Convert.ToInt32(reader["avgPoints"]);
+                        averagePoints.Add(new(groupName, avgPoints));
+                    }
+                }
+            }
+            return averagePoints;
+        }
+
+
 
         public void CloseConnection()
         {
