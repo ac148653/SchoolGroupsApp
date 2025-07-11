@@ -606,13 +606,18 @@ namespace SchoolGroupsApp
                     view.DisplayGroups(groups);
                     break;
                 case 2:
-                    List<Students> students = storageManager.SeniorStudentsList();
-                    view.DisplaySeniorStudents(students);
+                    List<Students> studentsSenior = storageManager.SeniorStudentsList();
+                    view.DisplaySeniorStudents(studentsSenior);
                     break;
                 case 3:
                     List<Badges> badges = storageManager.GoldBadges();
                     view.DisplayGoldBadges(badges);
                     break;
+                case 4:
+                    List<Students> students = storageManager.ParticularHomeroom();
+                    view.DisplayParticularHomeroom(students);
+                    break;
+
             }
         }
     }
