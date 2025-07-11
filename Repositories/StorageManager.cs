@@ -203,7 +203,7 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int UpdateBadgeLevel(int badgeId, int badgeLevel)
+        public int UpdateBadgeLevel(int badgeId, string badgeLevel)
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.Badges SET badgeLevel = @BadgeLevel WHERE badgeLevel = @BadgeLevel", conn))
             {
@@ -234,6 +234,14 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int BadgeID(string badgeName)
+        {
+            using SqlCommand cmd = new SqlCommand("SELECT badegID FROM GroupManagement.Badges WHERE badgeName = @BadgeName", conn);
+            {
+                cmd.Parameters.AddWithValue("@BadgeName", badgeName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
 
         public List<Tasks> GetAllTasks()
         {
