@@ -8,6 +8,7 @@ using Microsoft.Identity.Client;
 using SchoolGroupsApp.Model;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace SchoolGroupsApp.Repositories
 {
@@ -606,6 +607,26 @@ namespace SchoolGroupsApp.Repositories
                 }
             }
             return seniorBadges;
+        }
+
+        public List<(string lastName, string firstName)> TeachersInChargeDebating()
+        {
+            List<(string lastName, string firstName)> teachersInChargeDebating = new List<(string lastName, string firstName)>();
+            using SqlCommand cmd = new SqlCommand(" SELECT T.lastName, T.firstName FROM Staff.teacherGroups TG, " +
+                "Staff.teachers T, GroupManagement.groups G WHERE T.teacherID = TG.teacherID AND G.groupID = TG.groupID " +
+                "AND G.groupName = 'Debating' ORDER BY T.lastName", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        teachersInChargeDebating.Add(new(lastName, firstName));
+                    }
+                }
+            }
+            return teachersInChargeDebating;
         }
         public void CloseConnection()
         {
