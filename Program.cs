@@ -530,6 +530,15 @@ namespace SchoolGroupsApp
             int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, pointsValue);
         }
 
+        private static void DisplayPointsStudent()
+        {
+            view.DisplayMessage("Enter the last name of the student you want to view points of:");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the first name of the student you want to view points of:");
+            string firstName = view.GetInput();
+            int studentID = storageManager.StudentID(lastName, firstName);
+            List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> points = storageManager.GetAllPointsStudent(studentID);
+        }
 
 
         private static void GroupsChoice()

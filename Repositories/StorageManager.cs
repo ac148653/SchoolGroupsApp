@@ -471,6 +471,7 @@ namespace SchoolGroupsApp.Repositories
                         points.Add((lastName, firstName, yearLevel, totalPoints, groupName));
                     }
                 }
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
             }
             return points;
         }
