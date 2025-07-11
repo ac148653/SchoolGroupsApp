@@ -449,6 +449,31 @@ namespace SchoolGroupsApp.Repositories
             }
             return points;
         }
+
+        public List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> GetAllPointsStudent(int studentID)
+        {
+            List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)> points = new List<(string lastName, string firstName, int yearLevel, int totalPoints, string groupName)>();
+            string sqlString = "SELECT S.firstName, S.lastName, S.yearLevel, G.groupName, SUM(STP.Points) AS totalPoints FROM StudentInvolvement.students S, GroupManagement.groups G, " +
+                "StudentInvolvement.studentGroups SG, StudentInvolvement.studentTaskPoints STP WHERE S.studentID = SG.studentID AND G.groupID = SG.groupID AND " +
+                "SG.studentGroupID = STP.studentGroupID AND S.studentID = @StudentID GROUP BY S.studentID, S.firstName, S.lastName, S.yearLevel, S.groupName" +
+                "ORDER BY S.yearLevel, S.lastName, S.firstName, totalPoints DESC";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string firstName = reader["lastName"].ToString();
+                        string lastName = reader["firstName"].ToString();
+                        int yearLevel = Convert.ToInt32(reader["yearLevel"]);
+                        int totalPoints = Convert.ToInt32(reader["totalPoints"]);
+                        string groupName = reader["groupName"].ToString();
+                        points.Add((lastName, firstName, yearLevel, totalPoints, groupName));
+                    }
+                }
+            }
+            return points;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
