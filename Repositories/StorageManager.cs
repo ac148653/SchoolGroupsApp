@@ -142,7 +142,7 @@ namespace SchoolGroupsApp.Repositories
             {
                 cmd.Parameters.AddWithValue("@LastName", lastName);
                 cmd.Parameters.AddWithValue("@FirstName", firstName);
-                cmd.Parameters.AddWithValue("@StudentID", teacherId);
+                cmd.Parameters.AddWithValue("@TeacherID", teacherId);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -212,6 +212,16 @@ namespace SchoolGroupsApp.Repositories
                 }
             }
             return tasks;
+        }
+
+        public int UpdateTaskName(int taskId, string taskName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.tasks SET taskName = @TaskName WHERE taskName = @TaskName", conn))
+            {
+                cmd.Parameters.AddWithValue("@TaskName", taskName);
+                cmd.Parameters.AddWithValue("@TaskID", taskId);
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         public List<Groups> GetAllGroups()
