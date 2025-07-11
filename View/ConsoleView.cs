@@ -263,10 +263,11 @@ namespace SchoolGroupsApp.View
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all Tasks");
             Console.WriteLine("2. Update a task's name");
-            Console.WriteLine("3. Add a new task");
-            Console.WriteLine("4. Delete a task");
-            Console.WriteLine("5. Assign a task to a student");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("3. Update a task's point value");
+            Console.WriteLine("4. Add a new task");
+            Console.WriteLine("5. Delete a task");
+            Console.WriteLine("6. Assign a task to a student");
+            Console.WriteLine("7. Exit");
             Console.Write("Select an option: ");
             teacherChoice = int.Parse(Console.ReadLine());
             return teacherChoice;
