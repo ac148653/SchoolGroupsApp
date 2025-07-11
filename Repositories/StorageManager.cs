@@ -277,16 +277,23 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int TaskID(string taskName, int points)
+        public int TaskID(string taskName)
         {
-            using SqlCommand cmd = new SqlCommand("SELECT taskID, points FROM GroupManagement.tasks WHERE taskName = @TaskName", conn);
+            using SqlCommand cmd = new SqlCommand("SELECT taskID FROM GroupManagement.tasks WHERE taskName = @TaskName", conn);
             {
                 cmd.Parameters.AddWithValue("@TaskName", taskName);
-                cmd.Parameters.AddWithValue("@Points", points);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
-
+        public int TaskPointsValue(int taskID)
+        {
+            using SqlCommand cmd = new SqlCommand("SELECT pointsValue FROM GroupManagement.tasks WHERE taskID = @TaskID", conn);
+            {
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        
         public int StudentGroupID(int studentID, int groupID)
         {
             using SqlCommand cmd = new SqlCommand("SELECT studentGroupID FROM StudentInvolvement.studentGroups WHERE studentID = @StudentID" +

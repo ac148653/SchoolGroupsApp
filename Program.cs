@@ -394,7 +394,8 @@ namespace SchoolGroupsApp
             view.DisplayMessage("Enter the task you want to assign: ");
             string taskName = view.GetInput();
             int taskID = storageManager.TaskID(taskName);
-            int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, points);
+            int pointsValue = storageManager.TaskPointsValue(taskID);
+            int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, pointsValue);
         }
 
         private static void GroupsChoice()
