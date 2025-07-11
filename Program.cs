@@ -18,6 +18,7 @@ namespace SchoolGroupsApp
         {
             string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolGroupsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
+            view = new ConsoleView();
             int loginChoice, r = 0;
             do
             {
@@ -26,7 +27,7 @@ namespace SchoolGroupsApp
                 {
                     case 1:
                         {
-                            r = view.TeacherLogin();
+                            r = TeacherLogin();
                             if (r == 1)
                                 TeacherMenuChoice();
                             if (r == 2)
@@ -35,9 +36,9 @@ namespace SchoolGroupsApp
                         break;
                     case 2:
                         {
-                            r = view.StudentLogin();
+                            //r = view//StudentLogin();
                             if (r == 1)
-                                StudentMenuChoice();
+                                //StudentMenuChoice();
                             if (r == 2)
                                 break;
                         }
@@ -46,7 +47,7 @@ namespace SchoolGroupsApp
                         {
                             r = view.StudentRegister();
                             if (r == 1)
-                                StudentMenuChoice();
+                                //StudentMenuChoice();
                             if (r == 2)
                                 break;
                         }
@@ -60,6 +61,52 @@ namespace SchoolGroupsApp
             } while (r == 2);
         }
 
+        public static int CheckTeacherLogin(string userName, string password)
+        {
+            List<Teachers> teachers = storageManager.GetAllTeachers();
+
+            foreach (Teachers teacher in teachers)
+            {
+                if (userName.Equals(teacher.UserName) && password.Equals(teacher.Password))
+                {
+                    view.DisplayMessage("Login successful!");
+                    return 1;
+                }
+            }
+            view.DisplayMessage("Your username or password is incorrect. Please enter them again.");
+            return 0;
+        }
+
+        public static int TeacherLogin()
+        {
+            string userName;
+            string password;
+            Console.Clear();
+            view.DisplayMessage("Welcome to Teacher Login ");
+            do
+            {
+                view.DisplayMessage("LOGIN HERE:");
+                view.DisplayMessage("Please enter your username: ");
+                userName = Console.ReadLine();
+                view.DisplayMessage("Please enter your password: ");
+                password = Console.ReadLine();
+                if (userName.Length > 10 || userName.Length < 3)
+                    view.DisplayMessage("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
+                if (password.Length > 10 || password.Length < 5)
+                    view.DisplayMessage("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
+               // view.DisplayMessage("Press 2 to Return to Main Menu or press enter to continue");
+                //string input = Console.ReadLine();
+                //if (string.IsNullOrEmpty(input))
+                  //  break;
+                //int x = int.Parse(input);
+               // if (x == 2)
+                    //return x;
+            } while ((userName.Length > 10) || (userName.Length < 3) || (password.Length > 10) || (password.Length < 5));
+            int r = CheckTeacherLogin(userName, password);
+            if (r == 0)
+                TeacherLogin();
+            return r;
+        }
         private static void TeacherMenuChoice()
         {
             int studentsChoice;
@@ -68,8 +115,8 @@ namespace SchoolGroupsApp
             int tasksChoice;
             int badgesChoice;
             int pointsChoice;
-            do
-            {
+            //do
+            //{
                 int teacherMenuChoice = view.TeacherMenu();
                 switch (teacherMenuChoice)
                 {
@@ -130,10 +177,10 @@ namespace SchoolGroupsApp
                     case 7:
                     case 8:
                     default:
-                        Console.WriteLine("Invalid option. Please try again.");
+                        view.DisplayMessage("Invalid option. Please try again.");
                         break;
                 }
-            } while (studentsChoice == 7 || groupsChoice == 5 || teacherChoice == 5 || tasksChoice == 7 || badgesChoice == 7 || pointsChoice == 4);
+            //} while //(studentsChoice == 7 || groupsChoice == 5 || teacherChoice == 5 || tasksChoice == 7 || badgesChoice == 7 || pointsChoice == 4);
         }
 
 
@@ -563,7 +610,8 @@ namespace SchoolGroupsApp
                     view.DisplaySeniorStudents(students);
                     break;
                 case 3:
-
+                    List<Badges> badges = storageManager.GoldBadges();
+                    view.DisplayGoldBadges(badges);
                     break;
             }
         }
