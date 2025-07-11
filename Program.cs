@@ -487,7 +487,7 @@ namespace SchoolGroupsApp
             int studentGroupID = storageManager.StudentGroupID(studentID, groupID);
             int studentBadgeID = storageManager.InsertStudentBadges(studentGroupID, badgeID);
         }
-
+         
         private static void GroupsChoice()
         {
             view = new ConsoleView();
