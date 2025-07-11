@@ -641,6 +641,10 @@ namespace SchoolGroupsApp
                     List<(string taskName, int pointsValue, string groupName)> taskGroups = storageManager.TaskGroups();
                     view.DisplayTaskGroups(taskGroups);
                     break;
+                case 11:
+                    List<(string groupName, int totalStudents)> studentsInMusic = storageManager.StudentsInMusic();
+                    view.DisplayStudentsInMusic(studentsInMusic);
+                    break;
 
 
             }
