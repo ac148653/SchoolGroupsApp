@@ -273,7 +273,6 @@ namespace SchoolGroupsApp.Repositories
         {
             using SqlCommand cmd = new SqlCommand("SELECT groupID FROM GroupManagement.groups WHERE groupName = @GroupName", conn);
             {
-                cmd.Parameters.AddWithValue("@GroupName", groupName);
                 cmd.Parameters.AddWithValue("@GroupID", groupID);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
