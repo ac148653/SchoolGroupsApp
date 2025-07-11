@@ -203,6 +203,16 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int UpdateBadgeLevel(int badgeId, int badgeLevel)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.badges SET badgeLevel = @BadgeLevel WHERE badgeLevel = @BadgeLevel", conn))
+            {
+                cmd.Parameters.AddWithValue("@BadgeLevel", badgeLevel);
+                cmd.Parameters.AddWithValue("@BadgeID", badgeId);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Tasks> GetAllTasks()
         {
             List<Tasks> tasks = new List<Tasks>();
