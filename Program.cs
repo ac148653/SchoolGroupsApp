@@ -330,8 +330,23 @@ namespace SchoolGroupsApp
                     break;
                 case 5:
                     DeleteTaskByName();
+                    break;
+                case 6:
+                    AssignTask();
+                    break;
             }
         }
+
+        private static void UpdateTaskName()
+        {
+            view.DisplayMessage("Enter the task Id to update: ");
+            int taskId = view.GetIntInput();
+            view.DisplayMessage("Enter the new task name: ");
+            string taskName = view.GetInput();
+            int rowsAffected = storageManager.UpdateTaskName(taskId, taskName);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
