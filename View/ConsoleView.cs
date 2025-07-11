@@ -349,7 +349,7 @@ namespace SchoolGroupsApp.View
                 Console.WriteLine($"{badge.BadgeID}, {badge.BadgeName}, {badge.BadgeLevel}");
             }
         }
-
+         
 
         public void DisplayMessage(string message)
         {
