@@ -503,7 +503,8 @@ namespace SchoolGroupsApp
                     AddPoints();
                     break;
                 case 2:
-                    DisplayPoints();
+                    List<(string lastName, string firstName, int yearLevel, int totalPoints)> points = storageManager.GetAllPoints();
+                    view.DisplayPoints(points);
                     break;
                 case 3:
                     DisplayPointsStudent();
@@ -528,6 +529,9 @@ namespace SchoolGroupsApp
             int pointsValue = storageManager.TaskPointsValue(taskID);
             int studentTaskPointsID = storageManager.InsertStudentTaskPoints(studentGroupID, taskID, pointsValue);
         }
+
+
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
