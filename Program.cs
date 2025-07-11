@@ -357,6 +357,20 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void AddTask()
+        {
+            view.DisplayMessage("Enter the new task's name: ");
+            string taskName = view.GetInput();
+            view.DisplayMessage("Enter the new task's points value: ");
+            int pointsValue = view.GetIntInput();
+            view.DisplayMessage("Enter the group name for the task: ");
+            string groupName = view.GetInput();
+            int groupID = storageManager.GroupID(groupName);
+            int taskID = 0;
+            Tasks task1 = new Tasks(taskID, taskName, pointsValue, groupID);
+            int generateId = storageManager.AddTask(task1);
+            Console.WriteLine($"New task inserted with ID: {generateId}");
+        }
 
         private static void GroupsChoice()
         {
