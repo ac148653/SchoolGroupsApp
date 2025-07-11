@@ -278,6 +278,17 @@ namespace SchoolGroupsApp.Repositories
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public int TaskID(int taskID, string taskName)
+        {
+            using SqlCommand cmd = new SqlCommand("SELECT taskID FROM GroupManagement.tasks WHERE taskName = @TaskName", conn);
+            {
+                cmd.Parameters.AddWithValue("@TaskName", taskName);
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
         public List<Groups> GetAllGroups()
         {
             List<Groups> groups = new List<Groups>();
