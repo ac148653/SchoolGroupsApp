@@ -300,6 +300,18 @@ namespace SchoolGroupsApp.Repositories
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public int InsertStudentTaskPoints(int studentTaskPointsID, int studentGroupID, int taskID, int points)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO StudentInvolvement.studentTaskPoints (studentGroupID, taskID, points) " +
+                "VALUES (@StudentGroupID, @TaskID, @Points); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@StudentGroupID", studentGroupID);
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@Points", points);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
         public List<Groups> GetAllGroups()
         {
             List<Groups> groups = new List<Groups>();
