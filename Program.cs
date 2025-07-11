@@ -441,6 +441,16 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void UpdateBadgeLevel()
+        {
+            view.DisplayMessage("Enter the badge Id to update: ");
+            int badgeId = view.GetIntInput();
+            view.DisplayMessage("Enter the new badge level: ");
+            string badgeLevel = view.GetInput();
+            int rowsAffected = storageManager.UpdateBadgeLevel(badgeId, badgeLevel);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
