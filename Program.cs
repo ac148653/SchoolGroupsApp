@@ -637,6 +637,10 @@ namespace SchoolGroupsApp
                     List<(string lastName, string firstName)> teachersInChargeDebating = storageManager.TeachersInChargeDebating();
                     view.DisplayTeachersInChargeDebating(teachersInChargeDebating);
                     break;
+                case 10:
+                    List<(string taskName, int pointsValue, string groupName)> taskGroups = storageManager.TaskGroups();
+                    view.DisplayTaskGroups(taskGroups);
+                    break;
 
 
             }
