@@ -653,7 +653,10 @@ namespace SchoolGroupsApp
                     List<(string groupName, int numberOfTeachers)> teachersInCharge = storageManager.TeachersInCharge();
                     view.DisplayTeachersInCharge(teachersInCharge);
                     break;
-
+                case 14:
+                    List<(string groupName, int avgPoints)> averagePoints = storageManager.AveragePoints();
+                    view.DisplayAveragePoints(averagePoints);
+                    break;
 
             }
         }
