@@ -224,7 +224,7 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int UpdatePointValue(int taskId, int pointsValue)
+        public int UpdatePointsValue(int taskId, int pointsValue)
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE GroupManagement.tasks SET pointsValue = @PointsValue WHERE pointsValue = @PointsValue", conn))
             {
@@ -269,7 +269,7 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
-        public int GroupID(int groupID, string groupName)
+        public int GroupID(int groupID)
         {
             using SqlCommand cmd = new SqlCommand("SELECT groupID FROM GroupManagement.groups WHERE groupName = @GroupName", conn);
             {
