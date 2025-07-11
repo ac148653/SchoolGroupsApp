@@ -8,10 +8,10 @@ namespace SchoolGroupsApp.Model
 {
     public class Tasks
     {
-        private int TaskID { get; set; }
-        private string TaskName { get; set; }
-        private int PointsValue { get; set; }
-        private int GroupID { get; set; }
+        public int TaskID { get; set; }
+        public string TaskName { get; set; }
+        public int PointsValue { get; set; }
+        public int GroupID { get; set; }
 
         public Tasks(int taskID, string taskName, int pointsValue, int groupID)
         {
