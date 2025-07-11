@@ -257,6 +257,18 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int StudentID(int studentID, string lastName, string firstName)
+        {
+            using SqlCommand cmd = new SqlCommand("SELECT studentID FROM StudentInvolvement.students WHERE lastName = @LastName AND" +
+                "firstName = @FirstName", conn);
+            {
+                cmd.Parameters.AddWithValue("@LastName", lastName);
+                cmd.Parameters.AddWithValue("@FirstName", firstName);
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
         public List<Groups> GetAllGroups()
         {
             List<Groups> groups = new List<Groups>();
