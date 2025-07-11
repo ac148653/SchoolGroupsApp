@@ -443,7 +443,7 @@ namespace SchoolGroupsApp.Repositories
                         string lastName = reader["firstName"].ToString();
                         int yearLevel = Convert.ToInt32(reader["yearLevel"]);
                         int totalPoints = Convert.ToInt32(reader["totalPoints"]);
-                        points.Add(lastName, firstName, yearLevel, totalPoints);
+                        points.Add((lastName, firstName, yearLevel, totalPoints));
                     }
                 }
             }
