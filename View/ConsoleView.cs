@@ -290,6 +290,20 @@ namespace SchoolGroupsApp.View
             return badgeChoice;
         }
 
+        public int Points()
+        {
+            int pointsChoice;
+            Console.WriteLine("Welcome to Points");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. Add points to a student");
+            Console.WriteLine("2. Display points of all students");
+            Console.WriteLine("3. Display points of particular student");
+            Console.WriteLine("4. Exit");
+            Console.Write("Select an option: ");
+            pointsChoice = int.Parse(Console.ReadLine());
+            return pointsChoice;
+        }
+
         public int StudentMenu()
         {
             int choice;
