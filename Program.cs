@@ -471,6 +471,23 @@ namespace SchoolGroupsApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
+        private static void AwardBadge()
+        {
+            view.DisplayMessage("Enter the last name of the student you want to award a badge:");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter the first name of the student you want to award a badge:");
+            string firstName = view.GetInput();
+            int studentID = storageManager.StudentID(lastName, firstName);
+            view.DisplayMessage("Enter the name of the badge you want to award: ");
+            string badgeName = view.GetInput();
+            int badgeID = storageManager.BadgeID(badgeName);
+            view.DisplayMessage("Enter the name of the group you want to award a badge for:");
+            string groupName = view.GetInput();
+            int groupID = storageManager.GroupID(groupName);
+            int studentGroupID = storageManager.StudentGroupID(studentID, groupID);
+            int studentBadgeID = storageManager.InsertStudentBadges(studentGroupID, badgeID);
+        }
+
         private static void GroupsChoice()
         {
             view = new ConsoleView();
