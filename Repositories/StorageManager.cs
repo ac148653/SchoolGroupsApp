@@ -565,7 +565,7 @@ namespace SchoolGroupsApp.Repositories
 
         public List<(string lastName, string firstName, int yearlevel, string groupName)> StudentsWithA()
         {
-            List<(string lastName, string firstName, int yearlevel, string groupName)> studentWithA = new List<(string lastName, string firstName, int yearlevel, string groupName)>();
+            List<(string lastName, string firstName, int yearlevel, string groupName)> studentsWithA = new List<(string lastName, string firstName, int yearlevel, string groupName)>();
             using SqlCommand cmd = new SqlCommand("SELECT S.lastName, S.firstName, S.yearLevel, G.groupName FROM " +
                 "StudentInvolvement.students S, GroupManagement.groups G, StudentInvolvement.studentGroups SG " +
                 "WHERE S.studentID = SG.studentID AND G.groupID = SG.groupID AND S.firstName LIKE 'A%' ", conn);
@@ -578,11 +578,34 @@ namespace SchoolGroupsApp.Repositories
                         string firstName = reader["firstName"].ToString();
                         int yearLevel = Convert.ToInt32(reader["yearLevel"]);
                         string groupName = reader["groupName"].ToString();
-                        studentWithA.Add(new(lastName, firstName, yearLevel, groupName));
+                        studentsWithA.Add(new(lastName, firstName, yearLevel, groupName));
                     }
                 }
             }
-            return studentWithA;
+            return studentsWithA;
+        }
+
+        public List<(string lastName, string firstName, string badgeLevel, string badgeName)> SeniorBadges()
+        {
+            List<(string lastName, string firstName, string badgeLevel, string badgeName)> seniorBadges = new List<(string lastName, string firstName, string badgeLevel, string badgeName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT S.lastName, S.firstName, B.badgeLevel, B.badgeName FROM " +
+                "StudentInvolvement.students S, StudentInvolvement.studentBadges SB, GroupManagement.badges B, " +
+                "StudentInvolvement.studentGroups SG WHERE S.studentID = SG.studentID AND SG.studentGroupID = SB.studentGroupID " +
+                "AND B.badgeID = SB.badgeID AND S.yearLevel = 13", conn);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string lastName = reader["lastName"].ToString();
+                        string firstName = reader["firstName"].ToString();
+                        string badgeLevel = reader["badgeLevel"].ToString();
+                        string badgeName = reader["badgeName"].ToString();
+                        seniorBadges.Add(new(lastName, firstName, badgeLevel, badgeName));
+                    }
+                }
+            }
+            return seniorBadges;
         }
         public void CloseConnection()
         {
