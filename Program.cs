@@ -621,6 +621,10 @@ namespace SchoolGroupsApp
                     List<Teachers> teachers = storageManager.GetAllTeachers();
                     view.DisplayTeachers(teachers);
                     break;
+                case 6:
+                    List<(string lastName, string firstName, int yearLevel, string groupName)> studentLeaders = storageManager.StudentLeaders();
+                    view.DisplayStudentLeaders(studentLeaders);
+                    break;
 
 
             }
