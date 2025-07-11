@@ -67,6 +67,7 @@ namespace SchoolGroupsApp
             int teacherChoice;
             int tasksChoice;
             int badgesChoice;
+            int pointsChoice;
             do
             {
                 int teacherMenuChoice = view.TeacherMenu();
@@ -118,13 +119,21 @@ namespace SchoolGroupsApp
                         }
                         break;
                     case 6:
+                        {
+                            pointsChoice = view.Points();
+                            if (pointsChoice >= 1 && pointsChoice <= 3)
+                                PointsChoice(pointsChoice);
+                            if(pointsChoice == 4)
+                                break;
+                        }
+                        break;
                     case 7:
                     case 8:
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
                 }
-            } while (studentsChoice == 7 || groupsChoice == 5 || teacherChoice == 5 || tasksChoice == 7 || badgesChoice == 7);
+            } while (studentsChoice == 7 || groupsChoice == 5 || teacherChoice == 5 || tasksChoice == 7 || badgesChoice == 7 || pointsChoice == 4);
         }
       
         
