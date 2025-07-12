@@ -837,6 +837,28 @@ namespace SchoolGroupsApp.Repositories
             }
             return viewStudentGroups;
         }
+
+        public List<(string groupName, int totalPoints)> ViewStudentPoints(int studentID)
+        {
+            List<(string groupName, int totalPoints)> viewStudentPoints = new List<(string groupName, int totalPoints)>();
+            using SqlCommand cmd = new SqlCommand("SELECT G.groupName, SUM(STP.points) AS totalPoints FROM GroupManagement.groups G, " +
+                "StudentInvolvement.studentGroups SG, StudentInvolvement.studentTaskPoints STP WHERE G.groupID = SG.groupID AND " +
+                "SG.studentGroupID = STP.studentGroupID AND S.studentID = @StudentID GROUP BY G.groupName" +
+                "ORDER BY totalPoints DESC");
+            {
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string groupName = reader["groupName"].ToString();
+                        int totalPoints = Convert.ToInt32(reader["totalPoints"]);
+                        viewStudentPoints.Add(new(groupName, totalPoints));
+                    }
+                }
+            }
+            return viewStudentPoints;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
