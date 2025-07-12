@@ -763,6 +763,15 @@ namespace SchoolGroupsApp.Repositories
             }
         }
 
+        public int DeleteStudentGroup(int groupID)
+        {
+            using SqlCommand cmd = new SqlCommand("DELETE FROM StudentInvolvement.studentGroups WHERE groupID " +
+                "= @GroupID", conn);
+            {
+                cmd.Parameters.AddWithValue("@GroupID", groupID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
