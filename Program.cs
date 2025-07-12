@@ -727,7 +727,7 @@ namespace SchoolGroupsApp
             view.DisplayMessage("Enter the group you want to withdraw from: ");
             string groupName = view.GetInput();
             int groupID = storageManager.GroupID(groupName);
-            int studentGroupID = storageManager.DeleteStudentGroup(groupID);
+            int studentGroupID = storageManager.DeleteStudentGroup(groupID, studentID);
         }
     }
 }
