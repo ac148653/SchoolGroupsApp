@@ -818,9 +818,9 @@ namespace SchoolGroupsApp.Repositories
             return viewStudentTasks;
         }
 
-        public List<(string groupName)> ViewStudentGroups(int studentID)
+        public List<string> ViewStudentGroups(int studentID)
         {
-            List<(string groupName)> viewStudentGroups = new List<(string groupName)>();
+            List<string> viewStudentGroups = new List<string>();
             using SqlCommand cmd = new SqlCommand("SELECT G.groupName FROM GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE " +
                 "G.groupID = SG.groupID AND SG.studentID = @StudentID");
             {
