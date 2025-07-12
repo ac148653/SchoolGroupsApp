@@ -773,6 +773,28 @@ namespace SchoolGroupsApp.Repositories
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public List<(string badgeName, string badgeLevel, string groupName)> ViewStudentBadges(int studentID)
+        {
+            List<(string badgeName, string badgeLevel, string groupName)> viewStudentBadges = new List<(string badgeName, string badgeLevel, string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT B.badgeName, B.badgeLevel, G.groupName FROM GroupManagement.Badges B, StudentInvolvement.studentBadges SB, " +
+                "GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE B.badgeID = SB.badgeID AND B.studentGroupID = SG.studentGroupID AND " +
+                "G.groupID = SG.groupID AND SG.studentID = @StudentID");
+            {
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string badgeName = reader["badgeName"].ToString();
+                        string badgeLevel = reader["badgeLevel"].ToString();
+                        string groupName = reader["groupName"].ToString();
+                        viewStudentBadges.Add(new(badgeName, badgeLevel, groupName));
+                    }
+                }
+            }
+            return viewStudentBadges;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
