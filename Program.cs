@@ -689,7 +689,8 @@ namespace SchoolGroupsApp
                         UnenrollGroup();
                         break;
                     case 3:
-                    
+                        ViewStudentBadges();
+                        break;
                     case 4:
                       
                     case 5:
