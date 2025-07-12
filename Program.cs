@@ -711,6 +711,7 @@ namespace SchoolGroupsApp
             string groupName = view.GetInput();
             int groupID = storageManager.GroupID(groupName);
             view.DisplayMessage("Are you a student leader of this group");
+            bool leader = view.GetBoolInput();
             int studentGroupID = storageManager.InsertStudentGroups(studentID, groupID, leader);
         }
     }
