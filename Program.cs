@@ -758,8 +758,8 @@ namespace SchoolGroupsApp
         private static void ViewStudentGroups()
         {
             int studentID = view.StudentLogin();
-            List<string> viewStudentGroups = storageManager.ViewStudentGroups(studentID);
-            foreach (string viewStudentGroup in viewStudentGroups)
+            List<(int groupID, string groupName)> viewStudentGroups = storageManager.ViewStudentGroups(studentID);
+            foreach ((int groupID, string groupName) viewStudentGroup in viewStudentGroups)
             {
                 view.DisplayMessage($"{viewStudentGroup.groupName}");
             }
