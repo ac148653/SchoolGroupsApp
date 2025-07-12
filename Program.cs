@@ -696,8 +696,22 @@ namespace SchoolGroupsApp
                     default:
                         view.DisplayMessage("Invalid option. Please try again.");
                         break;
-            }
+                }
             } while ();
+        }
+
+        private static void JoinGroup()
+        {
+            view.DisplayMessage("Enter your last name:");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter your first name:");
+            string firstName = view.GetInput();
+            int studentID = storageManager.StudentID(lastName, firstName);
+            view.DisplayMessage("Enter the group you want to join: ");
+            string groupName = view.GetInput();
+            int groupID = storageManager.GroupID(groupName);
+            view.DisplayMessage("Are you a student leader of this group");
+            int studentGroupID = storageManager.InsertStudentGroups(studentID, groupID, leader);
         }
     }
 }
