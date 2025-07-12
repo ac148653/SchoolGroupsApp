@@ -817,6 +817,25 @@ namespace SchoolGroupsApp.Repositories
             }
             return viewStudentTasks;
         }
+
+        public List<(string groupName)> ViewStudentGroups(int studentID)
+        {
+            List<(string groupName)> viewStudentGroups = new List<(string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT G.groupName FROM GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE " +
+                "G.groupID = SG.groupID AND SG.studentID = @StudentID");
+            {
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string groupName = reader["groupName"].ToString();
+                        viewStudentGroups.Add(new(groupName));
+                    }
+                }
+            }
+            return viewStudentGroups;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
