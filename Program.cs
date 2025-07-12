@@ -765,6 +765,16 @@ namespace SchoolGroupsApp
                 view.DisplayMessage($"{viewStudentGroup.groupName}");
             }
         }
+
+        private static void ViewStudentPoints()
+        {
+            int studentID = view.StudentLogin();
+            List<(string groupName, int totalPoints)> viewStudentPoints = storageManager.ViewStudentPoints(studentID);
+            foreach ((string groupName, int totalPoints) viewStudentPoint in viewStudentPoints)
+            {
+                view.DisplayMessage($"{viewStudentPoint.groupName}, {viewStudentPoint.totalPoints}");
+            }
+        }
     }
 }
         /*private static void GroupsChoice()
