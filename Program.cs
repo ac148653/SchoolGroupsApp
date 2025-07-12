@@ -684,7 +684,8 @@ namespace SchoolGroupsApp
                         JoinGroup();
                         break;
                     case 2:
-          
+                        UnenrollGroup();
+                        break;
                     case 3:
                     
                     case 4:
