@@ -751,6 +751,17 @@ namespace SchoolGroupsApp.Repositories
             return leaderPoints;
         }
 
+        public int InsertStudentGroups(int studentID, int groupID, bool leader)
+        {
+            using SqlCommand cmd = new SqlCommand("INSERT INTO StudentInvolvement.studentGroups (studentID, groupID, leader) " +
+                "VALUES (@StudentID, @GroupID, @Leader); SELECT SCOPE_IDENTITY();", conn);
+            {
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                cmd.Parameters.AddWithValue("@GroupID", groupID);
+                cmd.Parameters.AddWithValue("@Leader", leader);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
 
         public void CloseConnection()
         {
