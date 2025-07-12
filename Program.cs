@@ -692,7 +692,8 @@ namespace SchoolGroupsApp
                         ViewStudentBadges();
                         break;
                     case 4:
-                      
+                        ViewStudentTasks();
+                        break;
                     case 5:
                     
                     case 6:
