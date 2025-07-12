@@ -178,9 +178,9 @@ namespace SchoolGroupsApp
                     case 7:
                         {
                             reportsChoice = view.Reports();
-                            if (reportsChoice >= 1 && reportsChoice <= 16)
+                            if (reportsChoice >= 1 && reportsChoice <= 15)
                                 ReportsChoice(reportsChoice);
-                            if(reportsChoice == 17)
+                            if(reportsChoice == 16)
                             break;
                         }
                         break;
@@ -671,6 +671,33 @@ namespace SchoolGroupsApp
                     view.DisplayLeaderPoints(leaderPoints);
                     break;
             }
+        }
+
+        private static void StudentMenuChoice()
+        { 
+            do
+            {
+                int studentMenuChoice = view.StudentMenu();
+                switch (studentMenuChoice)
+                {
+                    case 1:
+                    case 2:
+          
+                    case 3:
+                    
+                    case 4:
+                      
+                    case 5:
+                    
+                    case 6:
+                    case 7:
+               
+                    case 8:
+                    default:
+                        view.DisplayMessage("Invalid option. Please try again.");
+                        break;
+            }
+            } while ();
         }
     }
 }
