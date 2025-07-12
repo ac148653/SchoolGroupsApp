@@ -477,5 +477,14 @@ namespace SchoolGroupsApp.View
         {
             return int.Parse(Console.ReadLine());
         }
+
+        public bool GetBoolInput()
+        {
+            string input = Console.ReadLine().ToLower();
+            if (input.Equals("yes"))
+                return true;
+            else 
+                return false;
+        }
     }
 }
