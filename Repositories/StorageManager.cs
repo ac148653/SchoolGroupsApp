@@ -818,10 +818,10 @@ namespace SchoolGroupsApp.Repositories
             return viewStudentTasks;
         }
 
-        public List<string> ViewStudentGroups(int studentID)
+        public List<(int groupID, string groupName)> ViewStudentGroups(int studentID)
         {
-            List<string> viewStudentGroups = new List<string>();
-            using SqlCommand cmd = new SqlCommand("SELECT G.groupName FROM GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE " +
+            List<(int groupID, string groupName)> viewStudentGroups = new List<(int groupID, string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT G.groupID, G.groupName FROM GroupManagement.groups G, StudentInvolvement.studentGroups SG WHERE " +
                 "G.groupID = SG.groupID AND SG.studentID = @StudentID");
             {
                 cmd.Parameters.AddWithValue("@StudentID", studentID);
@@ -829,8 +829,9 @@ namespace SchoolGroupsApp.Repositories
                 {
                     while (reader.Read())
                     {
+                        int groupID = Convert.ToInt32(reader["groupID"]);
                         string groupName = reader["groupName"].ToString();
-                        viewStudentGroups.Add(new(groupName));
+                        viewStudentGroups.Add(new(groupID, groupName));
                     }
                 }
             }
