@@ -36,18 +36,18 @@ namespace SchoolGroupsApp
                         break;
                     case 2:
                         {
-                            //r = view//StudentLogin();
+                            r = StudentLogin();
                             if (r == 1)
-                                //StudentMenuChoice();
+                                StudentMenuChoice();
                             if (r == 2)
                                 break;
                         }
                         break;
                     case 3:
                         {
-                            r = view.StudentRegister();
+                            r = StudentRegister();
                             if (r == 1)
-                                //StudentMenuChoice();
+                                StudentMenuChoice();
                             if (r == 2)
                                 break;
                         }
@@ -94,18 +94,121 @@ namespace SchoolGroupsApp
                     view.DisplayMessage("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
                 if (password.Length > 10 || password.Length < 5)
                     view.DisplayMessage("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
-               // view.DisplayMessage("Press 2 to Return to Main Menu or press enter to continue");
-                //string input = Console.ReadLine();
-                //if (string.IsNullOrEmpty(input))
-                  //  break;
-                //int x = int.Parse(input);
-               // if (x == 2)
-                    //return x;
+                view.DisplayMessage("Press 2 to Return to Main Menu or press enter to continue");
+                string input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input))
+                    break;
+                int x = int.Parse(input);
+               if (x == 2)
+                   return x;
             } while ((userName.Length > 10) || (userName.Length < 3) || (password.Length > 10) || (password.Length < 5));
             int r = CheckTeacherLogin(userName, password);
             if (r == 0)
                 TeacherLogin();
             return r;
+        }
+        public int CheckStudentLogin(string userName, string password)
+        {
+            List<Students> students = storageManager.GetAllStudents();
+
+            foreach (Students student in students)
+            {
+                if (userName.Equals(student.UserName) && password.Equals(student.Password))
+                {
+                    view.DisplayMessage("Login successful!");
+                    return student.StudentID;
+                }
+            }
+            view.DisplayMessage("Your username or password is incorrect. Please enter them again.");
+            return 0;
+        }
+        public int StudentLogin()
+        {
+            string userName;
+            string password;
+            Console.Clear();
+            view.DisplayMessage("Welcome to Student Login ");
+            do
+            {
+                view.DisplayMessage("LOGIN HERE:");
+                view.DisplayMessage("Please enter your username: ");
+                userName = Console.ReadLine();
+                view.DisplayMessage("Please enter your password: ");
+                password = Console.ReadLine();
+                view.DisplayMessage("Press 2 to Return to Main Menu");
+                int x = int.Parse(Console.ReadLine());
+                if (x == 2)
+                    return x;
+                if (userName.Length > 10 || userName.Length < 5)
+                    view.DisplayMessage("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
+                if (password.Length > 10 || password.Length < 5)
+                    view.DisplayMessage("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
+            } while ((userName.Length > 10) || (userName.Length < 5) || (password.Length > 10) || (password.Length < 5));
+            int r = CheckStudentLogin(userName, password);
+            if (r == 0)
+                StudentLogin();
+            return r;
+        }
+
+        public int StudentRegister()
+        {
+            string firstName, lastName, userName, password, homeRoom, exit;
+            int yearLevel;
+
+            view.DisplayMessage("Welcome to Student Register");
+            view.DisplayMessage("If you don't want to register and want to exit, please enter x");
+            exit = Console.ReadLine().ToLower();
+            if (exit.Equals("x"))
+                return 2;
+            view.DisplayMessage("REGISTER HERE:");
+            do
+            {
+                view.DisplayMessage("Please enter your first name: ");
+                firstName = Console.ReadLine();
+                if (firstName.Length > 30)
+                    view.DisplayMessage("Invalid input. Please enter your first name again. It must be less than 30 characters.");
+            } while (firstName.Length > 30);
+            do
+            {
+                view.DisplayMessage("Please enter your last name: ");
+                lastName = Console.ReadLine();
+                if (lastName.Length > 30)
+                    view.DisplayMessage("Invalid input. Please enter your last name again. It must be less than 30 characters.");
+            } while (lastName.Length > 30);
+            do
+            {
+                view.DisplayMessage("Please enter your year level: ");
+                yearLevel = int.Parse(Console.ReadLine());
+                if (yearLevel < 9 || yearLevel > 13)
+                    view.DisplayMessage("Invalid input. Please enter your year level again. It must be between 9 to 13.");
+            } while (yearLevel < 9 || yearLevel > 13);
+            do
+            {
+                view.DisplayMessage("Please enter your homeroom: ");
+                homeRoom = Console.ReadLine();
+                if (homeRoom.Length > 5)
+                    view.DisplayMessage("Invalid input. Please enter your homeroom again. It must be 5 characters long.");
+            } while (homeRoom.Length > 5);
+            do
+            {
+                view.DisplayMessage("Please enter a username: ");
+                userName = Console.ReadLine();
+                if (userName.Length > 10 || userName.Length < 5)
+                    view.DisplayMessage("Invalid input. Please enter your username again. It must be between 5 to 10 characters.");
+            } while (userName.Length > 10 || userName.Length < 5);
+            do
+            {
+                view.DisplayMessage("Please enter a password: ");
+                password = Console.ReadLine();
+                if (password.Length > 10 || password.Length < 5)
+                    view.DisplayMessage("Invalid input. Please enter your password again. It must be between 5 to 10 characters.");
+            } while (password.Length > 10 || password.Length < 5);
+            view.DisplayMessage("Registration successful");
+            int studentID = 0;
+            Students student1 = new Students(studentID, lastName, firstName, yearLevel, homeRoom, userName, password);
+            int generateId = storageManager.AddStudent(student1);
+            view.DisplayMessage($"New student inserted with ID: {generateId}");
+            return 1;
         }
         private static void TeacherMenuChoice()
         {
@@ -271,7 +374,7 @@ namespace SchoolGroupsApp
             int studentID = 0;
             Students student1 = new Students(studentID, lastName, firstName, yearLevel, homeRoom, userName, password);
             int generateId = storageManager.AddStudent(student1);
-            Console.WriteLine($"New student inserted with ID: {generateId}");
+            view.DisplayMessage($"New student inserted with ID: {generateId}");
         }
         private static void DeleteStudentByName()
         {
@@ -377,7 +480,7 @@ namespace SchoolGroupsApp
             int teacherID = 0;
             Teachers teacher1 = new Teachers(teacherID, lastName, firstName, userName, password);
             int generateId = storageManager.AddTeacher(teacher1);
-            Console.WriteLine($"New teacher inserted with ID: {generateId}");
+            view.DisplayMessage($"New teacher inserted with ID: {generateId}");
         }
 
         private static void DeleteTeacherByName()
@@ -448,7 +551,7 @@ namespace SchoolGroupsApp
             int taskID = 0;
             Tasks task1 = new Tasks(taskID, taskName, pointsValue, groupID);
             int generateId = storageManager.AddTask(task1);
-            Console.WriteLine($"New task inserted with ID: {generateId}");
+            view.DisplayMessage($"New task inserted with ID: {generateId}");
         }
 
         private static void DeleteTaskByName()

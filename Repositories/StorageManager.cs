@@ -500,7 +500,7 @@ namespace SchoolGroupsApp.Repositories
             return students;
         }
 
-        public List<> GoldBadges()
+        public List<Badges> GoldBadges()
         {
             List<Badges> badges = new List<Badges>();
             using SqlCommand cmd = new SqlCommand("SELECT badgeName FROM GroupManagement.Badges WHERE badgeLevel = 'Gold'", conn);
