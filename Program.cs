@@ -674,38 +674,36 @@ namespace SchoolGroupsApp
         }
 
         private static void StudentMenuChoice()
-        { 
-            do
+        {
+            int studentMenuChoice = view.StudentMenu();
+            switch (studentMenuChoice)
             {
-                int studentMenuChoice = view.StudentMenu();
-                switch (studentMenuChoice)
-                {
-                    case 1:
-                        List<Groups> groups = storageManager.GetAllGroups();
-                        view.DisplayGroups(groups);
-                        JoinGroup();
-                        break;
-                    case 2:
-                        UnenrollGroup();
-                        break;
-                    case 3:
-                        ViewStudentBadges();
-                        break;
-                    case 4:
-                        ViewStudentTasks();
-                        break;
-                    case 5:
-                        ViewStudentGroups();
-                        break;
-                    case 6:
-                    case 7:
-               
-                    case 8:
-                    default:
-                        view.DisplayMessage("Invalid option. Please try again.");
-                        break;
-                }
-            } while ();
+                case 1:
+                    List<Groups> groups = storageManager.GetAllGroups();
+                    view.DisplayGroups(groups);
+                    JoinGroup();
+                    break;
+                case 2:
+                    UnenrollGroup();
+                    break;
+                case 3:
+                    ViewStudentBadges();
+                    break;
+                case 4:
+                    ViewStudentTasks();
+                    break;
+                case 5:
+                    ViewStudentGroups();
+                    break;
+                case 6:
+                    ViewStudentPoints();
+                    break;
+                case 7:
+                    return;
+                default:
+                    view.DisplayMessage("Invalid option. Please try again.");
+                    break;
+            }
         }
 
         private static void JoinGroup()
