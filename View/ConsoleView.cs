@@ -39,7 +39,7 @@ namespace SchoolGroupsApp.View
         }
 
 
-        /*public int CheckStudentLogin(string userName, string password)
+        public int CheckStudentLogin(string userName, string password)
         {
             List<Students> students = storageManager.GetAllStudents();
 
@@ -48,7 +48,7 @@ namespace SchoolGroupsApp.View
                 if (userName.Equals(student.UserName) && password.Equals(student.Password))
                 {
                     Console.WriteLine("Login successful!");
-                    return 1;
+                    return student.StudentID;
                 }
             }
             Console.WriteLine("Your username or password is incorrect. Please enter them again.");
@@ -80,7 +80,7 @@ namespace SchoolGroupsApp.View
             if (r == 0)
                 StudentLogin();
             return r;
-        }*/
+        }
 
         public int StudentRegister()
         {
