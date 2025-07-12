@@ -12,6 +12,7 @@ namespace SchoolGroupsApp.Model
         public string BadgeLevel { get; set; }
         public string BadgeName { get; set; }
 
+        public Badges() {}
         public Badges(int badgeID, string badgeLevel, string badgeName)
         {
             BadgeID = badgeID;

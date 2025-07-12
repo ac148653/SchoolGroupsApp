@@ -732,6 +732,16 @@ namespace SchoolGroupsApp
             int groupID = storageManager.GroupID(groupName);
             int studentGroupID = storageManager.DeleteStudentGroup(groupID, studentID);
         }
+
+        private static void ViewStudentBadges()
+        {
+            int studentID = view.StudentLogin();
+            List<(string badgeName, string badgeLevel, string groupName)> viewStudentBadges = storageManager.ViewStudentBadges(studentID);
+            foreach ((string badgeName, string badgeLevel, string groupName) viewStudentBadge in viewStudentBadges)
+            {
+                view.DisplayMessage($"{viewStudentBadge.badgeName}, {viewStudentBadge.badgeLevel}, {viewStudentBadge.groupName}");
+            }
+        }
     }
 }
         /*private static void GroupsChoice()
