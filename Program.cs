@@ -754,6 +754,16 @@ namespace SchoolGroupsApp
                 view.DisplayMessage($"{viewStudentTask.taskName}, {viewStudentTask.pointsValue}, {viewStudentTask.groupName}");
             }
         }
+
+        private static void ViewStudentGroups()
+        {
+            int studentID = view.StudentLogin();
+            List<string> viewStudentGroups = storageManager.ViewStudentGroups(studentID);
+            foreach (string viewStudentGroup in viewStudentGroups)
+            {
+                view.DisplayMessage($"{viewStudentGroup.groupName}");
+            }
+        }
     }
 }
         /*private static void GroupsChoice()
