@@ -795,6 +795,28 @@ namespace SchoolGroupsApp.Repositories
             }
             return viewStudentBadges;
         }
+
+        public List<(string taskName, int pointsValue, string groupName)> ViewStudentTasks(int studentID)
+        {
+            List<(string taskName, int pointsValue, string groupName)> viewStudentTasks = new List<(string taskName, int pointsValue, string groupName)>();
+            using SqlCommand cmd = new SqlCommand("SELECT T.taskName, T.pointsValue, G.groupName FROM GroupManagement.tasks T, " +
+                "GroupManagement.groups G, StudentInvolvement.studentGroups SG, StudentInvolvement.studentTaskPoints STP WHERE T.taskID = STP.taskID AND " +
+                "STP.studentGroupID = SG.studentGroupID AND G.groupID = SG.groupID AND SG.studentID = @StudentID");
+            {
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string taskName = reader["taskName"].ToString();
+                        int pointsValue = Convert.ToInt32(reader["pointsValue"]);
+                        string groupName = reader["groupName"].ToString();
+                        viewStudentTasks.Add(new(taskName, pointsValue, groupName));
+                    }
+                }
+            }
+            return viewStudentTasks;
+        }
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
