@@ -681,6 +681,8 @@ namespace SchoolGroupsApp
                 switch (studentMenuChoice)
                 {
                     case 1:
+                        List<Groups> groups = storageManager.GetAllGroups();
+                        view.DisplayGroups(groups);
                         JoinGroup();
                         break;
                     case 2:
