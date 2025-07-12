@@ -716,6 +716,19 @@ namespace SchoolGroupsApp
             bool leader = view.GetBoolInput();
             int studentGroupID = storageManager.InsertStudentGroups(studentID, groupID, leader);
         }
+
+        private static void UnenrollGroup()
+        {
+            view.DisplayMessage("Enter your last name:");
+            string lastName = view.GetInput();
+            view.DisplayMessage("Enter your first name:");
+            string firstName = view.GetInput();
+            int studentID = storageManager.StudentID(lastName, firstName);
+            view.DisplayMessage("Enter the group you want to withdraw from: ");
+            string groupName = view.GetInput();
+            int groupID = storageManager.GroupID(groupName);
+            int studentGroupID = storageManager.DeleteStudentGroup(groupID);
+        }
     }
 }
         /*private static void GroupsChoice()
