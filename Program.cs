@@ -681,6 +681,8 @@ namespace SchoolGroupsApp
                 switch (studentMenuChoice)
                 {
                     case 1:
+                        JoinGroup();
+                        break;
                     case 2:
           
                     case 3:
