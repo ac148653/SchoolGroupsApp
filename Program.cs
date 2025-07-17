@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks.Dataflow;
+﻿using System.Diagnostics;
+using System.Threading.Tasks.Dataflow;
 using System.Transactions;
 using Azure.Core;
 using Microsoft.Identity.Client;
@@ -16,7 +17,7 @@ namespace SchoolGroupsApp
 
         static void Main(string[] args)
         {
-            string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolGroupsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            string connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolGroupsDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
             int loginChoice, r = 0;
@@ -98,16 +99,23 @@ namespace SchoolGroupsApp
                 string input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input))
                     break;
-                int x = int.Parse(input);
-               if (x == 2)
-                   return x;
+                if (int.TryParse(input, out int x))
+                { 
+                    if (x == 2) ;
+                    return x;
+                }
+                else
+                {
+                    view.DisplayMessage("Invalid input. Please enter 2 or enter");
+                }
+                  
             } while ((userName.Length > 10) || (userName.Length < 3) || (password.Length > 10) || (password.Length < 5));
             int r = CheckTeacherLogin(userName, password);
             if (r == 0)
                 TeacherLogin();
             return r;
         }
-        public int CheckStudentLogin(string userName, string password)
+        public static int CheckStudentLogin(string userName, string password)
         {
             List<Students> students = storageManager.GetAllStudents();
 
@@ -122,7 +130,7 @@ namespace SchoolGroupsApp
             view.DisplayMessage("Your username or password is incorrect. Please enter them again.");
             return 0;
         }
-        public int StudentLogin()
+        public static int StudentLogin()
         {
             string userName;
             string password;
@@ -135,8 +143,11 @@ namespace SchoolGroupsApp
                 userName = Console.ReadLine();
                 view.DisplayMessage("Please enter your password: ");
                 password = Console.ReadLine();
-                view.DisplayMessage("Press 2 to Return to Main Menu");
-                int x = int.Parse(Console.ReadLine());
+                view.DisplayMessage("Press 2 to Return to Main Menu press enter to continue");
+                string input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input))
+                    break;
+                int x = int.Parse(input);
                 if (x == 2)
                     return x;
                 if (userName.Length > 10 || userName.Length < 5)
@@ -150,7 +161,7 @@ namespace SchoolGroupsApp
             return r;
         }
 
-        public int StudentRegister()
+        public static int StudentRegister()
         {
             string firstName, lastName, userName, password, homeRoom, exit;
             int yearLevel;
@@ -839,7 +850,7 @@ namespace SchoolGroupsApp
 
         private static void ViewStudentBadges()
         {
-            int studentID = view.StudentLogin();
+            int studentID = StudentLogin();
             List<(string badgeName, string badgeLevel, string groupName)> viewStudentBadges = storageManager.ViewStudentBadges(studentID);
             foreach ((string badgeName, string badgeLevel, string groupName) viewStudentBadge in viewStudentBadges)
             {
@@ -849,7 +860,7 @@ namespace SchoolGroupsApp
 
         private static void ViewStudentTasks()
         {
-            int studentID = view.StudentLogin();
+            int studentID = StudentLogin();
             List<(string taskName, int pointsValue, string groupName)> viewStudentTasks = storageManager.ViewStudentTasks(studentID);
             foreach ((string taskName, int pointsValue, string groupName) viewStudentTask in viewStudentTasks)
             {
@@ -859,7 +870,7 @@ namespace SchoolGroupsApp
 
         private static void ViewStudentGroups()
         {
-            int studentID = view.StudentLogin();
+            int studentID = StudentLogin();
             List<(int groupID, string groupName)> viewStudentGroups = storageManager.ViewStudentGroups(studentID);
             foreach ((int groupID, string groupName) viewStudentGroup in viewStudentGroups)
             {
@@ -869,7 +880,7 @@ namespace SchoolGroupsApp
 
         private static void ViewStudentPoints()
         {
-            int studentID = view.StudentLogin();
+            int studentID = StudentLogin();
             List<(string groupName, int totalPoints)> viewStudentPoints = storageManager.ViewStudentPoints(studentID);
             foreach ((string groupName, int totalPoints) viewStudentPoint in viewStudentPoints)
             {
